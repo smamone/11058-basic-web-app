@@ -91,39 +91,67 @@ if (isset($_GET['id'])) {
 }
 ?>
 
+<div class="container">
+
 <!--form to edit data for each DVD-->
-<form method="post">
+<form id="createRecord" method="post">
     
-    <!-- populate with existing data in database -->
-    <label for="id">ID</label>
-    <input type="text" name="id" id="id" value="<?php echo escape($film['id']); ?>" >
-    
-    <label for="title">Title</label>
-    <input type="text" name="title" id="title" value="<?php echo escape($film['title']); ?>">
+    <ul class="addRecord">
+        
+        <!-- populate with existing data in database -->    
+        <li class="label">
+            <label for="id">ID</label>
+            <input type="text" name="id" id="id" value="<?php echo escape($film['id']); ?>" >
+        </li>
 
-    <label for="image">Image</label>
-    <input type="image" name="image" id="image" value="<?php echo escape($film['image']); ?>">
+        <li class="label">
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title" value="<?php echo escape($film['title']); ?>">
+        </li>
 
-    <label for="director">Director</label>
-    <input type="text" name="director" id="director" value="<?php echo escape($film['director']); ?>">
+        <li class="label">
+            <label for="image">Image</label>
+            <input type="image" name="image" id="image" value="<?php echo escape($film['image']); ?>">
+        </li>
 
-    <label for="starring">Starring</label>
-    <input type="text" name="starring" id="starring" value="<?php echo escape($film['starring']); ?>">
+        <li class="label">
+            <label for="director">Director</label>
+            <input type="text" name="director" id="director" value="<?php echo escape($film['director']); ?>">
+        </li>
+
+        <li class="label">
+            <label for="starring">Starring</label>
+            <input type="text" name="starring" id="starring" value="<?php echo escape($film['starring']); ?>">
+        </li>
+
+        <li class="label">
+            <label for="genre">Genre</label>
+            <input type="text" name="genre" id="genre" value="<?php echo escape($film['genre']); ?>">
+        </li>
+
+        <li class="label">
+            <label for="tv">TV Series</label>
+            <input type="checkbox" name="tv" id="tv" value="<?php echo escape($film['tv']); ?>">
+        </li>
+
+        <li class="label">
+            <label for="season">Season</label>
+            <input type="number" name="season" id="season" value="<?php echo escape($film['season']); ?>">
+        </li>
+
+        <li class="label">
+            <label for="releasedate">Release Date</label>
+            <input type="number" name="releasedate" id="releasedate" value="<?php echo escape($film['releasedate']); ?>">
+        </li>
+        
+        <p class="field">
+            <input class="subBtn notification is-primary" type="submit" name="submit" value="Save">
+        </p>
     
-    <label for="genre">Genre</label>
-    <input type="text" name="genre" id="genre" value="<?php echo escape($film['genre']); ?>">
-    
-    <label for="tv">TV Series</label>
-    <input type="checkbox" name="tv" id="tv" value="<?php echo escape($film['tv']); ?>">
-    
-    <label for="season">Season</label>
-    <input type="number" name="season" id="season" value="<?php echo escape($film['season']); ?>">
-    
-    <label for="releasedate">Release Date</label>
-    <input type="number" name="releasedate" id="releasedate" value="<?php echo escape($film['releasedate']); ?>">
-    
-    <input type="submit" name="submit" value="Save">
+    </ul>
     
 </form>
+    
+</div>
 
 <?php include "templates/footer.php"; ?>

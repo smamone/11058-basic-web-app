@@ -59,6 +59,8 @@ try {
 
 <?php include "templates/header.php"; ?>
 
+<div class="container">
+
     <h2>Add a DVD</h2>
 
     <?php if (isset($_POST['submit']) && $statement) { ?>
@@ -68,34 +70,58 @@ try {
 <?php } ?>
 
 <!--form to collect data for each DVD-->
-<form method="post">
+<form id="createRecord" method="post">
     
-    <label for="title">Title</label> 
-    <input type="text" name="title" id="title">
+    <ul class="addRecord">
     
-    <label for="image">Image</label> 
-    <input type="image" name="image" id="image">
+        <li class="label">
+            <label for="title">Title</label> 
+            <input type="text" name="title" id="title">
+        </li>
+
+        <li class="label">
+            <label for="image">Image</label> 
+            <input type="image" name="image" id="image">
+        </li>
+
+        <li class="label">
+            <label for="director">Director</label>
+            <input type="text" name="director" id="director">
+        </li>
+
+        <li class="label">
+            <label for="starring">Starring</label>
+            <input type="text" name="starring" id="starring">
+        </li>
+
+        <li class="label">
+            <label for="genre">Genre</label>
+            <input type="text" name="genre" id="genre">
+        </li>
+
+        <li class="label">
+            <label for="tv" class="checkbox">TV Series</label>
+            <input class="checkbox" type="checkbox" name="tv" id="tv">
+        </li>
+
+        <li class="label">
+            <label for="season">Season</label>
+            <input type="number" name="season" id="season">
+        </li>
+
+        <li class="label">
+            <label for="releasedate">Release Date</label>
+            <input type="number" name="releasedate" id="releasedate">
+        </li>
+
+        <p class="field">
+            <input class="addBtn notification is-primary" type="submit" name="submit" value="Add">
+        </p>
     
-    <label for="director">Director</label> 
-    <input type="text" name="director" id="director">
-    
-    <label for="starring">Starring</label> 
-    <input type="text" name="starring" id="starring">
-    
-    <label for="genre">Genre</label> 
-    <input type="text" name="genre" id="genre">
-    
-    <label for="tv">TV Series</label> 
-    <input type="checkbox" name="tv" id="tv">
-    
-    <label for="season">Season</label> 
-    <input type="number" name="season" id="season">
-    
-    <label for="releasedate">Release Date</label> 
-    <input type="number" name="releasedate" id="releasedate">
-    
-    <input type="submit" name="submit" value="Add">
+    </ul>
     
 </form>
+    
+</div>
 
 <?php include "templates/footer.php"; ?>

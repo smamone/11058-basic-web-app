@@ -28,52 +28,79 @@ try {
 
 <?php include "templates/header.php"; ?>
 
-<h2>DVDs in my collection</h2>
+<div class="container">
+
+    <h2>DVDs in my collection</h2>
+
+    <div class="records">
 
 <?php // This is a loop, which will loop through each result in the array
 foreach($result as $row) {
 ?>
 
-<p>
-    ID:
-    <?php echo $row["id"]; ?><br>
+    <div class="dvdRecord">
+        <p class="id">
+<!--                <h6 class="labelResult">ID:</h6>-->
+        <?php echo $row["id"]; ?>
+        </p>
 
-    Title:
-    <?php echo $row['title']; ?><br>
+        <h4 class="title">
+<!--                <h6 class="labelResult">Title:</h6>-->
+        <?php echo $row['title']; ?>
+        </h4>
 
-    Image:
-    <?php echo $row['image']; ?><br>
+        <p class="image is-3by4">
+<!--                <h6 class="labelResult">Image:</h6>-->
+        <?php echo $row['image']; ?>
+        </p>
 
-    Director:
-    <?php echo $row['director']; ?><br>
+        <p class="director">
+            <h6 class="labelResult">Director:</h6>
+        <?php echo $row['director']; ?>
+        </p>
 
-    Starring:
-    <?php echo $row['starring']; ?><br>
+        <p class="starring">
+            <h6 class="labelResult">Starring:</h6>
+        <?php echo $row['starring']; ?>
+        </p>
 
-    Genre:
-    <?php echo $row['genre']; ?><br>
+        <p class="genre">
+            <h6 class="labelResult">Genre:</h6>
+        <?php echo $row['genre']; ?>
+        </p>
 
-    TV Series:
-    <?php echo $row['tv']; ?><br>
+        <p class="tv">
+            <h6 class="labelResult">TV Series:</h6>
+        <?php echo $row['tv']; ?>
+        </p>
 
-    Season:
-    <?php echo $row['season']; ?><br>
+        <p class="season">
+            <h6 class="labelResult">Season:</h6>
+        <?php echo $row['season']; ?>
+        </p>
 
-    Release date:
-    <?php echo $row['releasedate']; ?><br>
+        <p class="release">
+            <h6 class="labelResult">Release date:</h6>
+        <?php echo $row['releasedate']; ?>
+        </p>
 
-    <a href='update-work.php?id=<?php echo $row['id']; ?>'>Edit</a>
-
-</p>
+        <p>
+            <a href='update-work.php?id=<?php echo $row['id']; ?>' class="editBtn">Edit</a>
+        </p>
+    </div>
 
 <?php   // this will output all the data from the array
         // echo '<pre>'; var_dump($row); 
 ?>
 
-<hr>
+<!--<hr>-->
 <?php
 }; // close the foreach
 ?>
+
+</div>
+
+</div>
 
 <!--
 <form method="post">
