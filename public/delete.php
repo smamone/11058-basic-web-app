@@ -59,11 +59,28 @@ try {
 
 <?php include "templates/header.php"; ?>
 
+<section class="section">
 <div class="container">
 
     <h2>DVDs in my collection</h2>
+    
+            <div class="submenu">
+                <div class="total">
+                    <?php
+                    // display number of DVDs
+                    printf("<span>Total DVDs:</span> %d\n",$statement->rowCount());
+                    ?>
+                </div>
 
-    <div class="records">
+                <div class="dropdown">
+                    <label for="sort"><span>Sort by</span></label>
+                    <select name="sort" id="sort">
+                        <option value="default">ID (default)</option>
+                        <option value="title">Title</option>
+                        <option value="year">Year</option>
+                    </select>
+                </div>
+            </div>
 
 <?php // This is a loop, which will loop through each result in the array
 foreach($result as $row) {
@@ -131,7 +148,6 @@ foreach($result as $row) {
 ?>
 
 </div>
-
-</div>
+</section>
 
 <?php include "templates/footer.php"; ?>

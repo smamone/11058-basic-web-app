@@ -2,9 +2,59 @@
 // this code will only execute after the submit button is clicked
 if (isset($_POST['submit'])) {
 
-// include the config file that we created before
-require "../config.php";
-//include "templates/header.php";
+    // include the config file that we created before
+    require "../config.php";
+
+    $target_dir = "uploads/"; // file storage
+    $target_file = $target_dir . basename($_FILES["image"]["name"]); // file path to upload
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION)); // file extension type
+
+    // Valid file extensions
+    $extensions_arr = array("jpg","jpeg","png","gif");
+
+    // Check image file for authenticity
+    if(isset($_POST["submit"])) {
+        $check = getimagesize($_FILES["image"]["tmp_name"]);
+        if($check !== false) {
+    //    echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+        } else {
+        echo "File is not an image. Please select a different file.";
+        $uploadOk = 0;
+        }
+    }
+
+    // Check if file already exists in database
+    if (file_exists($target_file)) {
+        echo "A file with this name already exists. Please specify another file name.";
+        $uploadOk = 0;
+    }
+
+    // Check file size
+    if ($_FILES["image"]["size"] > 500000) {
+        echo "Your file is too large. Please choose a smaller file.";
+        $uploadOk = 0;
+    }
+
+    // Check file format
+    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+    && $imageFileType != "gif" ) {
+        echo "Only JPG, JPEG, PNG and GIF files are accepted. Please choose another file type.";
+        $uploadOk = 0;
+    }
+
+    // Check if $uploadOk is set to 0 by an error
+    if ($uploadOk == 0) {
+        echo "Something went wrong. Your file was not uploaded.";
+    // if everything is ok, try to upload file
+    } else {
+        if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+    //    echo basename( $_FILES["image"]["name"]). " was successfully uploaded.";
+        } else {
+        echo "Something went wrong. There was an error uploading your file.";
+        }
+}
     
 // this is called a try/catch statement
 try {
@@ -63,14 +113,8 @@ try {
 
     <h2>Add a DVD</h2>
 
-    <?php if (isset($_POST['submit']) && $statement) { ?>
-
-        <p>DVD successfully added.</p>
-
-<?php } ?>
-
 <!--form to collect data for each DVD-->
-<form id="createRecord" method="post">
+<form id="createRecord" method="post" enctype="multipart/form-data">
     
     <ul class="addRecord">
     
@@ -80,8 +124,8 @@ try {
         </li>
 
         <li class="label">
-            <label for="image">Image</label> 
-            <input type="image" name="image" id="image">
+            <label for="image">Image</label>
+            <input type="file" name="image" id="image">
         </li>
 
         <li class="label">
@@ -101,7 +145,7 @@ try {
 
         <li class="label">
             <label for="tv" class="checkbox">TV Series</label>
-            <input class="checkbox" type="checkbox" name="tv" id="tv">
+            <input class="checkbox" type="checkbox" name="tv" id="tv" value="1">
         </li>
 
         <li class="label">
@@ -119,6 +163,12 @@ try {
         </p>
     
     </ul>
+
+    <?php if (isset($_POST['submit']) && $statement) { ?>
+
+        <p class="alert">DVD successfully added.</p>
+
+    <?php } ?>
     
 </form>
     

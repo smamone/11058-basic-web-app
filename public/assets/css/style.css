@@ -2,7 +2,7 @@ body{
     background-color: azure;
     background-repeat: no-repeat;
     background-position: top;
-    padding: 5rem 0;
+    padding: 5rem auto;
     font-family: 'Arial';
     position: relative;
 }
@@ -10,6 +10,13 @@ body{
 .container{
     width: 90%;
     margin: 0 auto;
+    padding-bottom: 3rem;
+}
+
+.centre{
+    margin: 0 auto;
+    text-align: center;
+    border: 0.1rem solid #333;
 }
 
 header{
@@ -67,6 +74,10 @@ p{
     font-size: 1rem;
 }
 
+a{
+    text-decoration: none;
+}
+
 .nav{
     margin: 0 auto;
     text-align: center;
@@ -88,15 +99,25 @@ li a:hover{
     color: #FFF;
 }
 
+#header{
+    padding: 2rem 0 2.5rem;
+    background-color: darkturquoise;
+}
+
+.section{
+    padding: 0 1.5rem 3rem
+}
 
 form{
     margin: 0 auto;
+    padding: 5rem;
     background: #FFF 0.5;
 }
 
 label{
-    text-align: right;
-    width: 15rem;
+    width: 7rem;
+    margin-right: 1rem;
+    float: left;
 }
 
 input{
@@ -104,7 +125,7 @@ input{
     text-align: left;
 }
 
-.btn{
+input .btn, .btn{
     display: inline-block;
     background-color: #3A3C54;
     padding: 0.5rem 1.25rem;
@@ -112,6 +133,8 @@ input{
     font-weight: bold;
     border-radius: 0.5rem;
     border: none;
+    color: #FFF;
+    cursor: pointer;
 }
 
 .btn:hover{
@@ -134,7 +157,7 @@ input{
     margin: 0.75rem 0 0;
     width: auto;
     font-weight: bold;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     border: none;
     color: #FFF;
     cursor: pointer;
@@ -159,7 +182,7 @@ input{
     color: #FFF;
 }
 
-.editBtn a:hover, .subBtn a:hover, .outBtn a:hover{    
+.editBtn:hover, .subBtn:hover, .outBtn:hover{    
     color: #000;
 }
 
@@ -174,11 +197,13 @@ input{
     text-align: center;
 }
 
-.delBtn a:hover, .resBtn a:hover{
-    background-color: #F01440;
+.delBtn:hover, .resBtn:hover{
+    background-color: darkred;
 }
 
 .label{
+    width: 100%;
+    padding: 0.15rem 0;
 }
 
 .labelResult{
@@ -186,8 +211,12 @@ input{
     display: inline-block;
 }
 
+.checkbox{
+    text-align: left;
+}
+
 #createRecord{
-    
+    margin: 0 auto;
 }
 
 .id{
@@ -200,8 +229,10 @@ input{
 }
 
 .image{
-    width: 3rem;
+    max-width: 3rem;
     height: auto;
+    border: 0.05rem solid #CCC;
+    margin-bottom: 0 auto 2rem;
 }
 
 .director{
@@ -220,8 +251,8 @@ input{
     
 }
 
-.season{
-    
+li>label[for="season"], label[for="season"], #season{
+/*    display: none;*/
 }
 
 .release{
@@ -230,16 +261,16 @@ input{
 
 .records{
     width: 100%;
-    margin: 0 auto;
+    padding-bottom: 5rem;
 }
 
 .dvdRecord{
     display: inline-block;
     background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
-/*    min-width: 30%;*/
     padding: 2rem;
-    margin: 1.5rem;
+    margin: 1rem;
     border-radius: 1rem;
+    width: 30%;
 }
 
 .wrapper{
@@ -251,5 +282,44 @@ input{
     font-size: 0.8rem;
     font-weight: bold;
     color: red;
-    
+}
+
+.alert{
+    background-color: lightseagreen;
+    color: #FFF;
+    width: 65%;
+    margin: 2rem auto 0;
+    padding: 1rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.submenu{
+    margin: 1.5rem;
+    padding: 1rem;
+    border-bottom: 0.01rem solid #333;
+    height: 3.5rem;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.total{
+    display: inline-block;
+    width: 45%;
+    float: left;
+}
+
+.dropdown{
+    display: inline-block;
+    width: 45%;
+    float: left;
+}
+
+#sort{
+    display: inline-block;
+    float: left;
+}
+
+.total span, .dropdown span{
+    font-weight: bold;
 }

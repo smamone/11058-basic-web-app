@@ -28,29 +28,45 @@ try {
 
 <?php include "templates/header.php"; ?>
 
+<section class="section">
 <div class="container">
 
     <h2>DVDs in my collection</h2>
+    
+    <div class="submenu">
+        <div class="total">
+            <?php
+            // display number of DVDs
+            printf("<span>Total DVDs:</span> %d\n",$statement->rowCount());
+            ?>
+        </div>
 
-    <div class="records">
+        <div class="dropdown">
+            <label for="sort"><span>Sort by</span></label>
+            <select name="sort" id="sort">
+                <option value="default">ID (default)</option>
+                <option value="title">Title</option>
+                <option value="year">Year</option>
+            </select>
+        </div>
+    </div>
 
 <?php // This is a loop, which will loop through each result in the array
 foreach($result as $row) {
 ?>
 
     <div class="dvdRecord">
+<!--
         <p class="id">
-<!--                <h6 class="labelResult">ID:</h6>-->
         <?php echo $row["id"]; ?>
         </p>
+-->
 
         <h4 class="title">
-<!--                <h6 class="labelResult">Title:</h6>-->
         <?php echo $row['title']; ?>
         </h4>
 
         <p class="image is-3by4">
-<!--                <h6 class="labelResult">Image:</h6>-->
         <?php echo $row['image']; ?>
         </p>
 
@@ -100,7 +116,7 @@ foreach($result as $row) {
 
 </div>
 
-</div>
+</section>
 
 <!--
 <form method="post">

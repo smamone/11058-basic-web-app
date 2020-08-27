@@ -17,10 +17,14 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <div class="page-header">
         <h1><?php echo htmlspecialchars($_SESSION["username"]); ?>'s DVD tracker</h1>
     </div>
-    <p>
-        <a href="reset-password.php" class="resBtn">Reset Your Password</a>
-        <a href="logout.php" class="outBtn">Sign Out of Your Account</a>
-    </p>
+    <div class="centre">
+        <a href="reset-password.php" class="resBtn notification is-danger">
+            <i class="fas fa-wrench"></i> Reset password
+        </a>
+        <a href="logout.php" class="outBtn">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </a>
+    </div>
     
 </div>
 

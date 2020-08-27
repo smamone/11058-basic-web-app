@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 // this code will only execute after the submit button is clicked
 if (isset($_POST['submit'])) {
 	
     // include the config file that we created before
-    require "../config.php"; 
+    require "../config.php";
     
     // this is called a try/catch statement 
 	try {
@@ -30,35 +30,49 @@ if (isset($_POST['submit'])) {
 
 <?php include "templates/header.php"; ?>
 
+<section class="section">
 <div class="container">
 
 <?php  
     if (isset($_POST['submit'])) {
-        //if there are some results
+        // if there are some results
         if ($result && $statement->rowCount() > 0) { ?>
     
             <h2>DVDs in my collection</h2>
+    
+            <div class="submenu">
+                <div class="total">
+                    <?php
+                    // display number of DVDs
+                    printf("<span>Total DVDs:</span> %d\n",$statement->rowCount());
+                    ?>
+                </div>
 
-            <div class="records tile is-12">
+                <div class="dropdown">
+                    <label for="sort"><span>Sort by</span></label>
+                    <select name="sort" id="sort">
+                        <option value="default">ID (default)</option>
+                        <option value="title">Title</option>
+                        <option value="year">Year</option>
+                    </select>
+                </div>
+            </div>
 
             <?php // This is a loop, which will loop through each result in the array
             foreach($result as $row) {
             ?>
 
-            <div class="dvdRecord is-vertical">
+            <div class="dvdRecord">
                 <p class="id">
-    <!--                <h6 class="labelResult">ID:</h6>-->
                 <?php echo $row["id"]; ?>
                 </p>
 
                 <h4 class="title">
-    <!--                <h6 class="labelResult">Title:</h6>-->
                 <?php echo $row['title']; ?>
                 </h4>
 
                 <p class="image is-3by4">
-    <!--                <h6 class="labelResult">Image:</h6>-->
-                <?php echo $row['image']; ?>
+                    <img src="uploads/<?php echo $row['image']; ?>">
                 </p>
 
                 <p class="director">
@@ -103,11 +117,11 @@ if (isset($_POST['submit'])) {
 
 ?>
 
-            <form method="post">
-                <input class="btn" type="submit" name="submit" value="View all DVDs">
-            </form>
-            </div>
-
+<form method="post">
+    <input class="btn" type="submit" name="submit" value="View all DVDs">
+</form>
 </div>
+</section>
+
 
 <?php include "templates/footer.php"; ?>

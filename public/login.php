@@ -66,7 +66,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             header("location: welcome.php");
                         } else{
                             // Display an error message if password is not valid
-                            $password_err = "The password you entered was not valid.";
+                            $password_err = "The password you entered was incorrect.";
                         }
                     }
                 } else{
@@ -119,7 +119,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <div class="field">
                 <input type="submit" class="subBtn" value="Login">
             </div>
-            <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
+            <p>Don't have an account? <a class="btn" href="register.php">Sign up now</a></p>
         </form>
     </div>
 </body>

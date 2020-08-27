@@ -17,14 +17,16 @@ if (isset($_POST['submit'])) {
 
     // grab elements from form and set as varaible
     $film =[
-      "id"         => $_POST['id'],
-      "title" => $_POST['title'],
-      "image"  => $_POST['image'],
-      "director"   => $_POST['director'],
-      "starring"   => $_POST['starring'],
-      "genre"   => $_POST['genre'],
-      "tv"   => $_POST['tv'],
-      "date"   => $_POST['date'],
+      "id"          => $_POST['id'],
+      "title"       => $_POST['title'],
+      "image"       => $_POST['image'],
+      "director"    => $_POST['director'],
+      "starring"    => $_POST['starring'],
+      "genre"       => $_POST['genre'],
+      "tv"          => $_POST['tv'],
+      "season"      => $_POST['season'],
+      "releasedate" => $_POST['releasedate'],
+      "date"        => $_POST['date'],
     ];
 
     // create SQL statement
@@ -36,6 +38,8 @@ if (isset($_POST['submit'])) {
                 starring = :starring, 
                 genre = :genre, 
                 tv = :tv, 
+                season = :season,
+                releasedate = :releasedate,
                 date = :date 
             WHERE id = :id";
 
@@ -46,7 +50,7 @@ if (isset($_POST['submit'])) {
     $statement->execute($film); // $work
 
     // update confirmation
-    echo "<p>Edit successful.</p>";
+    echo "<p>Changes saved.</p>";
 
 }
 
@@ -98,11 +102,13 @@ if (isset($_GET['id'])) {
     
     <ul class="addRecord">
         
-        <!-- populate with existing data in database -->    
+        <!-- populate with existing data from database -->    
+<!--
         <li class="label">
             <label for="id">ID</label>
             <input type="text" name="id" id="id" value="<?php echo escape($film['id']); ?>" >
         </li>
+-->
 
         <li class="label">
             <label for="title">Title</label>
@@ -112,6 +118,7 @@ if (isset($_GET['id'])) {
         <li class="label">
             <label for="image">Image</label>
             <input type="image" name="image" id="image" value="<?php echo escape($film['image']); ?>">
+            <input type="file" name="image" id="image" value="<?php echo escape($film['image']); ?>">
         </li>
 
         <li class="label">

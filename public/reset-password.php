@@ -85,12 +85,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <p>Please complete this form to reset your password.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
             <div class="field <?php echo (!empty($new_password_err)) ? 'has-error' : ''; ?>">
-                <label>New Password</label>
+                <label>New password</label>
                 <input type="password" name="new_password" class="field" value="<?php echo $new_password; ?>">
                 <span class="help"><?php echo $new_password_err; ?></span>
             </div>
             <div class="field <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
-                <label>Confirm Password</label>
+                <label>Confirm password</label>
                 <input type="password" name="confirm_password" class="field">
                 <span class="help"><?php echo $confirm_password_err; ?></span>
             </div>
