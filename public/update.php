@@ -66,8 +66,8 @@ foreach($result as $row) {
         <?php echo $row['title']; ?>
         </h4>
 
-        <p class="image is-3by4">
-        <?php echo $row['image']; ?>
+        <p class="image">
+            <img src="uploads/<?php echo $row['image']; ?>">
         </p>
 
         <p class="director">

@@ -5,7 +5,8 @@ if (isset($_POST['submit'])) {
     // include the config file that we created before
     require "../config.php";
 
-    $target_dir = "uploads/"; // file storage
+    // upload image files to uploads folder
+    $target_dir = "uploads/"; // file storage - folder location
     $target_file = $target_dir . basename($_FILES["image"]["name"]); // file path to upload
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION)); // file extension type
@@ -64,8 +65,8 @@ try {
     
     // SECOND: Get the contents of the form and store it in an array
     $newDvd = array( 
-        "title"       => $_POST['title'], 
-        "image"       => $_POST['image'],
+        "title"       => $_POST['title'],
+        "image"       => basename($_FILES["image"]["name"]),
         "director"    => $_POST['director'],
         "starring"    => $_POST['starring'],
         "genre"       => $_POST['genre'],

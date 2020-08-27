@@ -228,11 +228,12 @@ input .btn, .btn{
     
 }
 
-.image{
-    max-width: 3rem;
+p image{
+    max-width: 85%;
     height: auto;
     border: 0.05rem solid #CCC;
-    margin-bottom: 0 auto 2rem;
+    margin: 0 auto;
+    padding-bottom: 0 auto 2rem;
 }
 
 .director{

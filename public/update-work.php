@@ -50,7 +50,7 @@ if (isset($_POST['submit'])) {
     $statement->execute($film); // $work
 
     // update confirmation
-    echo "<p>Changes saved.</p>";
+    echo "<p class='alert'>Changes saved successfully.</p>";
 
 }
 

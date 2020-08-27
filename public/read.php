@@ -63,6 +63,17 @@ if (isset($_POST['submit'])) {
             ?>
 
             <div class="dvdRecord">
+                
+                <?php
+                if( $row["imagelocation"] !== NULL && $row["imagelocation"] !== "" ){
+                    echo "<img src='uploads/" . $row["imagelocation"] . "' alt='" . $row['title'] .", season " . $row['season'] . "'>";
+                }
+                else
+                {
+                    echo "<p class='small'>No image available.</p>";
+                }
+                ?>
+                
                 <p class="id">
                 <?php echo $row["id"]; ?>
                 </p>
@@ -71,7 +82,7 @@ if (isset($_POST['submit'])) {
                 <?php echo $row['title']; ?>
                 </h4>
 
-                <p class="image is-3by4">
+                <p class="image">
                     <img src="uploads/<?php echo $row['image']; ?>">
                 </p>
 
