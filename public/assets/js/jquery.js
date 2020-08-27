@@ -9,9 +9,19 @@ $(document).ready(function(){
 //        return 'You haven\'t saved your changes.';
 //    }
 //});
-
-// Get the season input
+    
+// If record is a tv series
+var tvSeries = document.getElementById("tv");
 var seasonInput = document.getElementById("season");
+
+foreach($result as $row) {
+    if (tvSeries == 1){
+        tvSeries.html("Yes");
+    } else {
+        tvSeries.html("No");
+        seasonInput.style("display: none;");
+    }
+};
     
 // Get the checkbox
 var tvCheckBox = document.getElementById("tv").addEventListener("click", function(tvSeries) { // Show season input if tv checkbox == true

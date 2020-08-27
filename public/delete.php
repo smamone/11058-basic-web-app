@@ -61,26 +61,28 @@ try {
 
 <section class="section">
 <div class="container">
-
-    <h2>DVDs in my collection</h2>
     
-            <div class="submenu">
-                <div class="total">
-                    <?php
-                    // display number of DVDs
-                    printf("<span>Total DVDs:</span> %d\n",$statement->rowCount());
-                    ?>
-                </div>
+    <div id="heading">
+        <h2>DVDs in my collection</h2>
+    </div>
+    
+    <div class="submenu">
+        <div class="total">
+            <?php
+            // display number of DVDs
+            printf("<span>Total DVDs:</span> %d\n",$statement->rowCount());
+            ?>
+        </div>
 
-                <div class="dropdown">
-                    <label for="sort"><span>Sort by</span></label>
-                    <select name="sort" id="sort">
-                        <option value="default">ID (default)</option>
-                        <option value="title">Title</option>
-                        <option value="year">Year</option>
-                    </select>
-                </div>
-            </div>
+        <div class="dropdown">
+            <label for="sort"><span>Sort by</span></label>
+            <select name="sort" id="sort">
+                <option value="default">ID (default)</option>
+                <option value="title">Title</option>
+                <option value="year">Year</option>
+            </select>
+        </div>
+    </div>
 
 <?php // This is a loop, which will loop through each result in the array
 foreach($result as $row) {
@@ -98,7 +100,15 @@ foreach($result as $row) {
         </h4>
 
         <p class="image">
-            <img src="uploads/<?php echo $row['image']; ?>">
+            <?php
+            if( $row["image"] !== NULL && $row["image"] !== "" ){
+                echo "<img src='uploads/" . $row["image"] . "' alt='" . $row['title'] .", season " . $row['season'] . "'>";
+            }
+            else
+            {
+                echo "<p class='noImage'>No image available.</p>";
+            }
+            ?>
         </p>
 
         <p class="director">

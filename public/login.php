@@ -95,17 +95,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <div class="wrapper">
+    <div class="container">
+        
         <h2>Login</h2>
         <p>Please fill in your credentials to login.</p>
+        
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            
             <div class="field <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
                 <p class="control icon is-left has-icons-left icon is-right has-icons-right">
                     <label>Username</label>
                     <input type="text" name="username" class="" value="<?php echo $username; ?>">
                     <span class="help"><?php echo $username_err; ?></span>
                 </p>
-            </div>    
+            </div>
+            
             <div class="field <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
                 <p class="control icon is-left has-icons-left icon is-right has-icons-right">
                     <label>Password</label>
@@ -116,11 +120,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     </span>
                 </p>
             </div>
+            
             <div class="field">
                 <input type="submit" class="subBtn" value="Login">
             </div>
             <p>Don't have an account? <a class="btn" href="register.php">Sign up now</a></p>
         </form>
+        
     </div>
 </body>
 </html>

@@ -30,8 +30,10 @@ try {
 
 <section class="section">
 <div class="container">
-
-    <h2>DVDs in my collection</h2>
+    
+    <div id="heading">
+        <h2>DVDs in my collection</h2>
+    </div>
     
     <div class="submenu">
         <div class="total">
@@ -67,7 +69,15 @@ foreach($result as $row) {
         </h4>
 
         <p class="image">
-            <img src="uploads/<?php echo $row['image']; ?>">
+            <?php
+            if( $row["image"] !== NULL && $row["image"] !== "" ){
+                echo "<img src='uploads/" . $row["image"] . "' alt='" . $row['title'] .", season " . $row['season'] . "'>";
+            }
+            else
+            {
+                echo "<p class='noImage'>No image available.</p>";
+            }
+            ?>
         </p>
 
         <p class="director">

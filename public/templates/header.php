@@ -15,6 +15,8 @@
 
 <body>
     
+    <a name="top"></a>
+    
     <section id="header">
         <h1><a href="index.php">My DVD Tracker</a></h1>
 

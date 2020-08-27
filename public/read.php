@@ -38,84 +38,84 @@ if (isset($_POST['submit'])) {
         // if there are some results
         if ($result && $statement->rowCount() > 0) { ?>
     
-            <h2>DVDs in my collection</h2>
-    
-            <div class="submenu">
-                <div class="total">
-                    <?php
-                    // display number of DVDs
-                    printf("<span>Total DVDs:</span> %d\n",$statement->rowCount());
-                    ?>
-                </div>
+    <div id="heading">
+        <h2>DVDs in my collection</h2>
+    </div>
 
-                <div class="dropdown">
-                    <label for="sort"><span>Sort by</span></label>
-                    <select name="sort" id="sort">
-                        <option value="default">ID (default)</option>
-                        <option value="title">Title</option>
-                        <option value="year">Year</option>
-                    </select>
-                </div>
-            </div>
-
-            <?php // This is a loop, which will loop through each result in the array
-            foreach($result as $row) {
+    <div class="submenu">
+        <div class="total">
+            <?php
+            // display number of DVDs
+            printf("<span>Total DVDs:</span> %d\n",$statement->rowCount());
             ?>
+        </div>
 
-            <div class="dvdRecord">
-                
-                <?php
-                if( $row["imagelocation"] !== NULL && $row["imagelocation"] !== "" ){
-                    echo "<img src='uploads/" . $row["imagelocation"] . "' alt='" . $row['title'] .", season " . $row['season'] . "'>";
-                }
-                else
-                {
-                    echo "<p class='small'>No image available.</p>";
-                }
-                ?>
-                
-                <p class="id">
-                <?php echo $row["id"]; ?>
-                </p>
+        <div class="dropdown">
+            <label for="sort"><span>Sort by</span></label>
+            <select name="sort" id="sort">
+                <option value="default">ID (default)</option>
+                <option value="title">Title</option>
+                <option value="year">Year</option>
+            </select>
+        </div>
+    </div>
 
-                <h4 class="title">
-                <?php echo $row['title']; ?>
-                </h4>
+    <?php // This is a loop, which will loop through each result in the array
+    foreach($result as $row) {
+    ?>
 
-                <p class="image">
-                    <img src="uploads/<?php echo $row['image']; ?>">
-                </p>
+    <div class="dvdRecord">
 
-                <p class="director">
-                    <h6 class="labelResult">Director:</h6>
-                <?php echo $row['director']; ?>
-                </p>
+        <p class="id">
+        <?php echo $row["id"]; ?>
+        </p>
 
-                <p class="starring">
-                    <h6 class="labelResult">Starring:</h6>
-                <?php echo $row['starring']; ?>
-                </p>
+        <h4 class="title">
+        <?php echo $row['title']; ?>
+        </h4>
 
-                <p class="genre">
-                    <h6 class="labelResult">Genre:</h6>
-                <?php echo $row['genre']; ?>
-                </p>
+        <p class="image">
+            <?php
+            if( $row["image"] !== NULL && $row["image"] !== "" ){
+                echo "<img src='uploads/" . $row["image"] . "' alt='" . $row['title'] .", season " . $row['season'] . "'>";
+            }
+            else
+            {
+                echo "<p class='noImage'>No image available.</p>";
+            }
+            ?>
+        </p>
 
-                <p class="tv">
-                    <h6 class="labelResult">TV Series:</h6>
-                <?php echo $row['tv']; ?>
-                </p>
+        <p class="director">
+            <h6 class="labelResult">Director:</h6>
+        <?php echo $row['director']; ?>
+        </p>
 
-                <p class="season">
-                    <h6 class="labelResult">Season:</h6>
-                <?php echo $row['season']; ?>
-                </p>
+        <p class="starring">
+            <h6 class="labelResult">Starring:</h6>
+        <?php echo $row['starring']; ?>
+        </p>
 
-                <p class="release">
-                    <h6 class="labelResult">Release date:</h6>
-                <?php echo $row['releasedate']; ?>
-                </p>
-            </div>
+        <p class="genre">
+            <h6 class="labelResult">Genre:</h6>
+        <?php echo $row['genre']; ?>
+        </p>
+
+        <p class="tv">
+            <h6 class="labelResult">TV Series:</h6>
+        <?php echo $row['tv']; ?>
+        </p>
+
+        <p class="season">
+            <h6 class="labelResult">Season:</h6>
+        <?php echo $row['season']; ?>
+        </p>
+
+        <p class="release">
+            <h6 class="labelResult">Release date:</h6>
+        <?php echo $row['releasedate']; ?>
+        </p>
+    </div>
 
 <?php   // this will output all the data from the array
         // echo '<pre>'; var_dump($row); 
@@ -128,9 +128,17 @@ if (isset($_POST['submit'])) {
 
 ?>
 
-<form method="post">
-    <input class="btn" type="submit" name="submit" value="View all DVDs">
-</form>
+<div class="row">
+    <form class="formBtn" method="post">
+        <input class="viewBtn" type="submit" name="submit" value="View all DVDs">
+    </form>
+
+    <!-- scroll to top button -->
+    <a class="top" href="#top">
+        <i class="fas fa-chevron-circle-up"></i>
+    </a>
+</div>
+
 </div>
 </section>
 

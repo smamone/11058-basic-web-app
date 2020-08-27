@@ -100,9 +100,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <div class="wrapper">
+    <div class="container">
         <h2>Sign Up</h2>
         <p>Please complete this form to create an account.</p>
+        
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             
             <div class="field" <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>>
@@ -143,10 +144,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             
             <div class="field">
                 <input type="submit" class="subBtn" value="Submit">
-                <input type="reset" class="resBtn" value="Reset">
+                <input type="reset" class="resBtn notification is-danger" value="Reset">
             </div>
             <p>Already have an account? <a href="login.php">Login here</a>.</p>
+            
         </form>
+        
     </div>    
 </body>
 </html>
