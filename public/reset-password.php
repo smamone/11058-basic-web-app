@@ -77,28 +77,45 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <head>
     <meta charset="UTF-8">
     <title>Reset Password</title>
-    <link ref="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
+    
 <body>
-    <div class="wrapper">
+    <div class="container">
+        
         <h2>Reset Password</h2>
-        <p>Please complete this form to reset your password.</p>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
-            <div class="field <?php echo (!empty($new_password_err)) ? 'has-error' : ''; ?>">
-                <label>New password</label>
-                <input type="password" name="new_password" class="field" value="<?php echo $new_password; ?>">
-                <span class="help"><?php echo $new_password_err; ?></span>
-            </div>
-            <div class="field <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
-                <label>Confirm password</label>
-                <input type="password" name="confirm_password" class="field">
-                <span class="help"><?php echo $confirm_password_err; ?></span>
-            </div>
-            <div class="field">
-                <input type="submit" class="subBtn" value="Submit">
-                <a class="canBtn" href="welcome.php">Cancel</a>
-            </div>
-        </form>
+        
+        <div class="content">
+            <p>Please complete this form to reset your password.</p>
+            
+            <hr>
+        
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+
+                <div class="field <?php echo (!empty($new_password_err)) ? 'has-error' : ''; ?>">
+                    <p class="control icon is-left has-icons-left icon is-right has-icons-right">
+                        <label>New password</label>
+                        <input type="password" name="new_password" placeholder="New password" class="field" value="<?php echo $new_password; ?>">
+                        <span class="help"><?php echo $new_password_err; ?></span>
+                    </p>
+                </div>
+                <div class="field <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
+                    <p class="control icon is-left has-icons-left icon is-right has-icons-right">
+                        <label>Confirm password</label>
+                        <input type="password" name="confirm_password" placeholder="Confirm password" class="field">
+                        <span class="help"><?php echo $confirm_password_err; ?></span>
+                    </p>
+                </div>
+                <div class="field">
+                    <p class="control icon is-left has-icons-left icon is-right has-icons-right">
+                        <input type="submit" class="subBtn button is-link" value="Submit">
+                        <a class="canBtn" href="welcome.php">Cancel</a>
+                    </p>
+                </div>
+
+            </form>
+        </div>
+        
     </div>    
 </body>
 </html>

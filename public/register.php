@@ -13,7 +13,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate username
     if(empty(trim($_POST["username"]))){
         $username_err = "Please enter a username.";
-    } else{
+    }else{
         // Prepare a select statement
         $sql = "SELECT id FROM users WHERE username = :username";
         
@@ -28,10 +28,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             if($stmt->execute()){
                 if($stmt->rowCount() == 1){
                     $username_err = "This username is already taken.";
-                } else{
+                }else{
                     $username = trim($_POST["username"]);
                 }
-            } else{
+            }else{
                 echo "Oops! Something went wrong. Please try again later.";
             }
         }
@@ -42,20 +42,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     // Validate password
     if(empty(trim($_POST["password"]))){
-        $password_err = "Please enter a password.";     
-    } elseif(strlen(trim($_POST["password"])) < 6){
+        $password_err = "Please enter a password.";
+    }elseif(strlen(trim($_POST["password"])) < 6){
         $password_err = "Password must have at least 6 characters.";
-    } else{
+    }else{
         $password = trim($_POST["password"]);
     }
     
     // Validate confirm password
     if(empty(trim($_POST["confirm_password"]))){
-        $confirm_password_err = "Please confirm password.";     
-    } else{
+        $confirm_password_err = "Please confirm password.";
+    }else{
         $confirm_password = trim($_POST["confirm_password"]);
         if(empty($password_err) && ($password != $confirm_password)){
-            $confirm_password_err = "Password did not match.";
+            $confirm_password_err = "Passwords do not match.";
         }
     }
     
@@ -78,7 +78,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             if($stmt->execute()){
                 // Redirect to login page
                 header("location: login.php");
-            } else{
+            }else{
                 echo "Something went wrong. Please try again later.";
             }
         }
@@ -99,56 +99,70 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <title>Sign Up</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
+    
 <body>
     <div class="container">
         <h2>Sign Up</h2>
-        <p>Please complete this form to create an account.</p>
         
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <div class="content">
+            <p>Please complete this form to create an account.</p>
             
-            <div class="field" <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>>
-                <p class="control has-icons-left has-icons-right">
-                    <label>Username</label>
-                    <input type="text" name="username" class="input is-focused is-success" placeholder="Username" value="<?php echo $username; ?>">
-                    <span class="help icon is=small is-left"><?php echo $username_err; ?>
-                        <i class="fas fa-user"></i>
-                    </span>
-                    <span class="icon is-small is-right">
-                      <i class="fas fa-check"></i>
-                    </span>
-                    
-                </p>
-            </div>  
-            
-            <div class="field" <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>>
-                <p class="control has-icons-left">
-                    <label>Password</label>
-                    <input class="password" type="password" placeholder="Password" value="<?php echo $password; ?>">
-                    <span class="icon is-small is-left help">
-                        <?php echo $password_err; ?>
-                        <i class="fas fa-lock"></i>
-                    </span>
-                </p>
-            </div>
-            
-            <div class="field" <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>>
-                <p class="control has-icons-left">
-                    <label>Confirm Password</label>
-                    <input type="password" name="confirm_password" placeholder="Confirm password" class="input is-focused" value="<?php echo $confirm_password; ?>">
-                    <span class="icon is-small is-left help">
-                        <?php echo $confirm_password_err; ?>
-                        <i class="fas fa-lock"></i>
-                    </span>
-                </p>
-            </div>
-            
-            <div class="field">
-                <input type="submit" class="subBtn" value="Submit">
-                <input type="reset" class="resBtn notification is-danger" value="Reset">
-            </div>
-            <p>Already have an account? <a href="login.php">Login here</a>.</p>
-            
-        </form>
+            <hr>
+
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+
+                <div class="field <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+                    <p class="control has-icons-left has-icons-right">
+                        <label>
+                            <i class="fas fa-user"></i>
+                            Username
+                        </label>
+                        <input type="text" name="username" class="input is-focused is-success" placeholder="Username" value="<?php echo $username; ?>">
+                        <span class="help icon is=small is-left">
+                            <?php echo $username_err; ?>
+                        </span>
+                    </p>
+                </div>  
+
+                <div class="field <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+                    <p class="control has-icons-left">
+                        <label>
+                            <i class="fas fa-lock"></i>
+                            Password
+                        </label>
+                        <input class="password" type="password" placeholder="Password" value="<?php echo $password; ?>">
+                        <span class="icon is-small is-left help">
+                            <?php echo $password_err; ?>
+                            <i class="fas fa-lock"></i>
+                        </span>
+                    </p>
+                </div>
+
+                <div class="field <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
+                    <p class="control has-icons-left">
+                        <label>
+                            <i class="fas fa-lock"></i>
+                            Confirm password
+                        </label>
+                        <input type="password" name="confirm_password" placeholder="Confirm password" class="input is-focused" value="<?php echo $confirm_password; ?>">
+                        <span class="icon is-small is-left help">
+                            <?php echo $confirm_password_err; ?>
+                            <i class="fas fa-lock"></i>
+                        </span>
+                    </p>
+                </div>
+
+                <div class="field">
+                    <input type="submit" class="subBtn" value="Submit">
+                    <input type="reset" class="resBtn" value="Reset">
+                </div>
+                
+                <p class="spacer"></p>
+
+                <p class="other">Already have an account? <a class="btn" href="login.php">Login here</a></p>
+
+            </form>
+        </div>
         
     </div>    
 </body>

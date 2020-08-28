@@ -14,8 +14,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 <div class="container">
 
-    <div class="page-header">
-        <h1><?php echo htmlspecialchars($_SESSION["username"]); ?>'s DVD tracker</h1>
+    <div class="pageHeader">
+        <h2><?php echo htmlspecialchars($_SESSION["username"]); ?>'s DVD tracker</h2>
     </div>
     <div class="centre">
         <a href="reset-password.php" class="resBtn notification is-danger">

@@ -110,8 +110,8 @@ foreach($result as $row) {
         <?php echo $row['releasedate']; ?>
         </p>
 
-        <p>
-            <a href='update-work.php?id=<?php echo $row['id']; ?>' class="editBtn">Edit</a>
+        <p class="right">
+            <a href='update-work.php?id=<?php echo $row['id']; ?>' class="editBtn button is-link">Edit</a>
         </p>
     </div>
 

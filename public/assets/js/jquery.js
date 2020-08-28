@@ -10,18 +10,40 @@ $(document).ready(function(){
 //    }
 //});
     
+// Shrink nav on scroll
+//if(position >= 200) {
+//      $('#header').removeClass('header');
+//      $('#header').addClass('customNav');
+//    } else {
+//      $('#header').removeClass('customNav');
+//      $('#header').addClass('header');
+//}
+var scrollTop = 0;
+$(window).scroll(function(){
+    scrollTop = $(window).scrollTop();
+    $('.counter').html(scrollTop);
+
+    if (scrollTop >= 100) {
+          $('#header').removeClass('header');
+          $('#header').addClass('customNav');
+        } else if (scrollTop < 100) {
+          $('#header').removeClass('customNav');
+          $('#header').addClass('header');
+    }
+});
+    
 // If record is a tv series
 var tvSeries = document.getElementById("tv");
 var seasonInput = document.getElementById("season");
 
-foreach($result as $row) {
-    if (tvSeries == 1){
-        tvSeries.html("Yes");
-    } else {
-        tvSeries.html("No");
-        seasonInput.style("display: none;");
-    }
-};
+//foreach($result as $row) {
+//    if (tvSeries == 1){
+//        tvSeries.html("Yes");
+//    } else {
+//        tvSeries.html("No");
+//        seasonInput.style("display: none;");
+//    }
+//};
     
 // Get the checkbox
 var tvCheckBox = document.getElementById("tv").addEventListener("click", function(tvSeries) { // Show season input if tv checkbox == true

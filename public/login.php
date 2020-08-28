@@ -98,34 +98,40 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <div class="container">
         
         <h2>Login</h2>
-        <p>Please fill in your credentials to login.</p>
         
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <div class="content">
+            <p>Please fill in your credentials to login.</p>
             
-            <div class="field <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-                <p class="control icon is-left has-icons-left icon is-right has-icons-right">
-                    <label>Username</label>
-                    <input type="text" name="username" class="" value="<?php echo $username; ?>">
-                    <span class="help"><?php echo $username_err; ?></span>
-                </p>
-            </div>
-            
-            <div class="field <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                <p class="control icon is-left has-icons-left icon is-right has-icons-right">
-                    <label>Password</label>
-                    <input type="password" name="password" class="">
-                    <span class="help">
-                        <?php echo $password_err; ?>
-                        <i class="fas fa-lock"></i>
-                    </span>
-                </p>
-            </div>
-            
-            <div class="field">
-                <input type="submit" class="subBtn" value="Login">
-            </div>
-            <p>Don't have an account? <a class="btn" href="register.php">Sign up now</a></p>
-        </form>
+            <hr>
+
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+
+                <div class="field <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+                    <p class="control icon is-left has-icons-left icon is-right has-icons-right">
+                        <label>Username</label>
+                        <input type="text" name="username" placeholder="Username" class="" value="<?php echo $username; ?>">
+                        <span class="help"><?php echo $username_err; ?></span>
+                    </p>
+                </div>
+
+                <div class="field <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+                    <p class="control icon is-left has-icons-left icon is-right has-icons-right">
+                        <label>Password</label>
+                        <input type="password" name="password" placeholder="Password" class="">
+                        <span class="help">
+                            <?php echo $password_err; ?>
+                            <i class="fas fa-lock"></i>
+                        </span>
+                    </p>
+                </div>
+
+                <div class="field">
+                    <input type="submit" class="subBtn button" value="Login">
+                </div>
+                
+                <p class="other">Don't have an account? <a class="btn button" href="register.php">Sign up now</a></p>
+            </form>
+        </div>
         
     </div>
 </body>

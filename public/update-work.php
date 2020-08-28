@@ -11,9 +11,9 @@ if (isset($_POST['submit'])) {
     try {
         $connection = new PDO($dsn, $username, $password, $options);  
 
-        } catch(PDOException $error) {
+    } catch(PDOException $error) {
         echo "<p>" . $sql . "<br>" . $error->getMessage() . "</p>";
-    }        
+    }
 
     // grab elements from form and set as varaible
     $film =[
@@ -47,7 +47,7 @@ if (isset($_POST['submit'])) {
     $statement = $connection->prepare($sql);
 
     //execute sql statement
-    $statement->execute($film); // $work
+    $statement->execute($film);
 
     // update confirmation
     echo "<p class='alert'>Changes saved successfully.</p>";
@@ -81,7 +81,7 @@ if (isset($_GET['id'])) {
         $statement->execute();
 
         // attach the sql statement to the new film variable so we can access it in the form
-        $film = $statement->fetch(PDO::FETCH_ASSOC); // $work
+        $film = $statement->fetch(PDO::FETCH_ASSOC);
 
     } catch(PDOExcpetion $error) {
         echo "<p>" . $sql . "<br>" . $error->getMessage() . "</p>";
@@ -96,68 +96,75 @@ if (isset($_GET['id'])) {
 ?>
 
 <div class="container">
-
-<!--form to edit data for each DVD-->
-<form id="createRecord" method="post">
     
-    <ul class="addRecord">
+    <div class="content">
+    
+        <h2>Edit DVD</h2>
+
+        <!--form to edit data for each DVD-->
+        <form id="createRecord" method="post">
+
+            <ul class="addRecord">
+
+                <!-- populate with existing data from database -->
+        <!--
+                <li class="label">
+                    <label for="id">ID</label>
+                    <input type="text" name="id" id="id" value="<?php echo escape($film['id']); ?>" >
+                </li>
+        -->
+
+                <li class="label">
+                    <label for="title">Title</label>
+                    <input type="text" name="title" id="title" value="<?php echo escape($film['title']); ?>">
+                </li>
+
+                <li class="label">
+                    <label for="image">Image</label>
+                    <input type="image" name="image" id="image" value="<?php echo escape($film['image']); ?>">
+                    <input type="file" name="image" id="image" value="<?php echo escape($film['image']); ?>">
+                </li>
+
+                <li class="label">
+                    <label for="director">Director</label>
+                    <input type="text" name="director" id="director" value="<?php echo escape($film['director']); ?>">
+                </li>
+
+                <li class="label">
+                    <label for="starring">Starring</label>
+                    <input type="text" name="starring" id="starring" value="<?php echo escape($film['starring']); ?>">
+                </li>
+
+                <li class="label">
+                    <label for="genre">Genre</label>
+                    <input type="text" name="genre" id="genre" value="<?php echo escape($film['genre']); ?>">
+                </li>
+
+                <li class="label">
+                    <label for="tv">TV Series</label>
+                    <input type="checkbox" name="tv" id="tv" value="<?php echo escape($film['tv']); ?>">
+                </li>
+
+                <li class="label">
+                    <label for="season">Season</label>
+                    <input type="number" name="season" id="season" value="<?php echo escape($film['season']); ?>">
+                </li>
+
+                <li class="label">
+                    <label for="releasedate">Release Date</label>
+                    <input type="number" name="releasedate" id="releasedate" value="<?php echo escape($film['releasedate']); ?>">
+                </li>
+
+                <p class="field">
+                    <input class="subBtn button notification is-primary" type="submit" name="submit" value="Save">
+                    <a class="canBtn" href="update.php">Cancel</a>
+                </p>
+
+            </ul>
+
+        </form>
         
-        <!-- populate with existing data from database -->    
-<!--
-        <li class="label">
-            <label for="id">ID</label>
-            <input type="text" name="id" id="id" value="<?php echo escape($film['id']); ?>" >
-        </li>
--->
-
-        <li class="label">
-            <label for="title">Title</label>
-            <input type="text" name="title" id="title" value="<?php echo escape($film['title']); ?>">
-        </li>
-
-        <li class="label">
-            <label for="image">Image</label>
-            <input type="image" name="image" id="image" value="<?php echo escape($film['image']); ?>">
-            <input type="file" name="image" id="image" value="<?php echo escape($film['image']); ?>">
-        </li>
-
-        <li class="label">
-            <label for="director">Director</label>
-            <input type="text" name="director" id="director" value="<?php echo escape($film['director']); ?>">
-        </li>
-
-        <li class="label">
-            <label for="starring">Starring</label>
-            <input type="text" name="starring" id="starring" value="<?php echo escape($film['starring']); ?>">
-        </li>
-
-        <li class="label">
-            <label for="genre">Genre</label>
-            <input type="text" name="genre" id="genre" value="<?php echo escape($film['genre']); ?>">
-        </li>
-
-        <li class="label">
-            <label for="tv">TV Series</label>
-            <input type="checkbox" name="tv" id="tv" value="<?php echo escape($film['tv']); ?>">
-        </li>
-
-        <li class="label">
-            <label for="season">Season</label>
-            <input type="number" name="season" id="season" value="<?php echo escape($film['season']); ?>">
-        </li>
-
-        <li class="label">
-            <label for="releasedate">Release Date</label>
-            <input type="number" name="releasedate" id="releasedate" value="<?php echo escape($film['releasedate']); ?>">
-        </li>
-        
-        <p class="field">
-            <input class="subBtn notification is-primary" type="submit" name="submit" value="Save">
-        </p>
-    
-    </ul>
-    
-</form>
+    </div>
     
 </div>
 

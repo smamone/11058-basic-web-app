@@ -43,21 +43,23 @@ if (isset($_POST['submit'])) {
     </div>
 
     <div class="submenu">
-        <div class="total">
-            <?php
-            // display number of DVDs
-            printf("<span>Total DVDs:</span> %d\n",$statement->rowCount());
-            ?>
-        </div>
-
-        <div class="dropdown">
-            <label for="sort"><span>Sort by</span></label>
-            <select name="sort" id="sort">
-                <option value="default">ID (default)</option>
-                <option value="title">Title</option>
-                <option value="year">Year</option>
-            </select>
-        </div>
+        <ul>
+            <li class="total">
+                <?php
+                // display number of DVDs
+                printf("<span>Total DVDs:</span> %d\n",$statement->rowCount());
+                ?>
+            </li>
+            
+            <li class="dropdown">
+                <label for="sort"><span>Sort by</span></label>
+                <select name="sort" id="sort">
+                    <option value="default">ID (default)</option>
+                    <option value="title">Title</option>
+                    <option value="year">Year</option>
+                </select>
+            </li>
+        </ul>
     </div>
 
     <?php // This is a loop, which will loop through each result in the array
@@ -65,7 +67,6 @@ if (isset($_POST['submit'])) {
     ?>
 
     <div class="dvdRecord">
-
         <p class="id">
         <?php echo $row["id"]; ?>
         </p>

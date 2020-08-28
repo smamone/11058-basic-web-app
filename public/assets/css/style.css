@@ -17,6 +17,12 @@ body{
     padding-bottom: 3rem;
 }
 
+.content{
+    width: 40rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
 .centre{
     width: 33.5rem;
     margin: 0 auto 5rem;
@@ -54,8 +60,19 @@ h1{
 h2{
     font-family: 'BebasNeue', Arial;
     font-size: 3.5rem;
+    font-weight: normal;
     line-height: 4rem;
     text-align: center;
+}
+
+.pageHeader{
+    margin-top: 2rem;
+}
+
+.content h2{
+    font-size: 3.5rem;
+    font-weight: normal;
+    margin-top: 2rem;
 }
 
 h3{
@@ -105,11 +122,23 @@ li a:hover{
     color: #FFF;
 }
 
-#header{
+.header{
+    width: 100%;
     padding: 2rem 0 2.5rem;
     background-color: darkturquoise;
-/*    box-shadow: 0 1rem 1.5rem #666;*/
     z-index: 5;
+/*    position: fixed;*/
+    top: 0;
+}
+
+.customNav{
+    padding: 0;
+    background-color: #333;
+    z-index: 5;
+}
+
+.header2{
+    padding: 2rem 0 0;
 }
 
 #heading{
@@ -153,14 +182,25 @@ li a:hover{
 
 form{
     margin: 0 auto;
-    padding: 5rem;
+    padding: 3rem;
     background: #FFF 0.5;
 }
 
 label{
-    width: 7rem;
+    width: 8.5rem;
+    text-align: left;
     margin-right: 1rem;
     float: left;
+}
+
+.other{
+    margin-top: 1rem;
+    padding-top: 2rem;
+    border-top: 0.01rem solid #cdcdcd;
+}
+
+.spacer{
+    padding-bottom: 0.75rem;
 }
 
 input{
@@ -168,99 +208,81 @@ input{
     text-align: left;
 }
 
-input .btn, .btn{
+.btn,
+.addBtn,
+.editBtn,
+.subBtn,
+.outBtn,
+.delBtn,
+.resBtn,
+.canBtn,
+.viewBtn{
     display: inline-block;
+    width: auto;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    color: #FFF;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+input .btn, .btn{
     background-color: #3A3C54;
     padding: 0.5rem 1.25rem;
     margin: 0 1.25rem;
-    font-weight: bold;
-    border-radius: 0.5rem;
-    border: none;
-    color: #FFF;
-    cursor: pointer;
-    text-align: center;
 }
 
 .btn:hover{
-    background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
-    color: #FFF;
-}
-
-.btn a{    
-    color: #FFF;
-}
-
-.btn a:hover{    
-    color: #FFF;
+    background-color: #141d26;
 }
 
 .addBtn{
-    display: inline-block;
-    background-image: linear-gradient(-20deg, #00cdac 0%, #8ddad5 100%);
     padding: 0.75rem 1.5rem;
     margin: 0.75rem 0 0;
-    width: auto;
-    font-weight: bold;
-    border-radius: 0.5rem;
-    border: none;
-    color: #FFF;
-    cursor: pointer;
+    line-height: 0;
 }
 
 .addBtn a:hover{    
-    color: #000;
+    background-color: #007777;
 }
 
 .editBtn, .subBtn, .outBtn{
-    display: inline-block;
-    background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%);
     padding: 0.5rem 1.25rem;
     margin: 0.75rem 0 0;
-    font-weight: bold;
-    border-radius: 0.5rem;
-    border: none;
+    background-color: #3273dc;
+}
+
+.editBtn:hover, .subBtn:hover, .outBtn:hover{    
+    background-color: #005582;
     color: #FFF;
 }
 
-.editBtn a, .subBtn a, .outBtn a{    
-    color: #FFF;
+.right{
+    text-align: right;
 }
 
-.editBtn a:hover, .subBtn a:hover, .outBtn a:hover{    
-    background-color: darkblue;
-}
-
-.delBtn, .resBtn{
-    display: inline-block;
+.delBtn, .resBtn, .canBtn{
     padding: 0.5rem 1.25rem;
     margin: 0.75rem 0 0;
-    font-weight: bold;
-    border-radius: 0.5rem;
-    border: none;
-    color: #FFF;
-    text-align: center;
+    background-color: #f14668;
 }
 
-.delBtn:hover, .resBtn:hover{
-    background-color: darkred;
+.delBtn:hover, .resBtn:hover, .canBtn:hover{
+    background-color: #d11141;
+    color: #FFF;
 }
 
 .viewBtn{
     width: 10rem;
-    display: inline-block;
     padding: 1rem;
     margin: 0.75rem 0 0;
-    font-weight: bold;
-    border-radius: 0.5rem;
-    border: none;
-    color: #FFF;
-    background-color: purple;
-    text-align: center;
-    cursor: pointer;
+    background-color: #3A3C54;
 }
 
 .viewBtn:hover{
-    background-color: rebeccapurple;
+    background-color: #536878;
 }
 
 .label{
@@ -279,6 +301,10 @@ input .btn, .btn{
 
 #createRecord{
     margin: 0 auto;
+}
+
+.addRecord label{
+    width: 7rem;
 }
 
 .id{
@@ -355,7 +381,9 @@ li>label[for="season"], label[for="season"], #season{
 .help{
     font-size: 0.8rem;
     font-weight: bold;
+    text-align: right;
     color: red;
+    display: block;
 }
 
 .alert{
@@ -384,9 +412,11 @@ li>label[for="season"], label[for="season"], #season{
 }
 
 .dropdown{
-    display: inline-block;
-    width: 45%;
-    float: left;
+    margin: 0 auto;
+}
+
+.dropdown label{
+    width: 5rem;
 }
 
 #sort{
@@ -396,4 +426,8 @@ li>label[for="season"], label[for="season"], #season{
 
 .total span, .dropdown span{
     font-weight: bold;
+}
+
+.borderBottom{
+    border-bottom: 0.01rem solid #cdcdcd;
 }

@@ -111,67 +111,72 @@ try {
 <?php include "templates/header.php"; ?>
 
 <div class="container">
+        
+    <div class="content">
 
-    <h2>Add a DVD</h2>
+        <h2>Add a DVD</h2>
 
-<!--form to collect data for each DVD-->
-<form id="createRecord" method="post" enctype="multipart/form-data">
-    
-    <ul class="addRecord">
-    
-        <li class="label">
-            <label for="title">Title</label> 
-            <input type="text" name="title" id="title">
-        </li>
+        <!--form to collect data for each DVD-->
+        <form id="createRecord" method="post" enctype="multipart/form-data">
 
-        <li class="label">
-            <label for="image">Image</label>
-            <input type="file" name="image" id="image">
-        </li>
+            <ul class="addRecord">
 
-        <li class="label">
-            <label for="director">Director</label>
-            <input type="text" name="director" id="director">
-        </li>
+                <li class="label">
+                    <label for="title">Title</label> 
+                    <input type="text" name="title" id="title">
+                </li>
 
-        <li class="label">
-            <label for="starring">Starring</label>
-            <input type="text" name="starring" id="starring">
-        </li>
+                <li class="label">
+                    <label for="image">Image</label>
+                    <input type="file" name="image" id="image">
+                </li>
 
-        <li class="label">
-            <label for="genre">Genre</label>
-            <input type="text" name="genre" id="genre">
-        </li>
+                <li class="label">
+                    <label for="director">Director</label>
+                    <input type="text" name="director" id="director">
+                </li>
 
-        <li class="label">
-            <label for="tv" class="checkbox">TV Series</label>
-            <input class="checkbox" type="checkbox" name="tv" id="tv" value="1">
-        </li>
+                <li class="label">
+                    <label for="starring">Starring</label>
+                    <input type="text" name="starring" id="starring">
+                </li>
 
-        <li class="label">
-            <label for="season">Season</label>
-            <input type="number" name="season" id="season">
-        </li>
+                <li class="label">
+                    <label for="genre">Genre</label>
+                    <input type="text" name="genre" id="genre">
+                </li>
 
-        <li class="label">
-            <label for="releasedate">Release Date</label>
-            <input type="number" name="releasedate" id="releasedate">
-        </li>
+                <li class="label">
+                    <label for="tv" class="checkbox">TV Series</label>
+                    <input class="checkbox" type="checkbox" name="tv" id="tv" value="1">
+                </li>
 
-        <p class="field">
-            <input class="addBtn notification is-primary" type="submit" name="submit" value="Add">
-        </p>
-    
-    </ul>
+                <li class="label">
+                    <label for="season">Season</label>
+                    <input type="number" name="season" id="season">
+                </li>
 
-    <?php if (isset($_POST['submit']) && $statement) { ?>
+                <li class="label">
+                    <label for="releasedate">Release Date</label>
+                    <input type="number" name="releasedate" id="releasedate">
+                </li>
 
-        <p class="alert">DVD successfully added.</p>
+                <p class="field">
+                    <input class="addBtn button notification is-primary" type="submit" name="submit" value="Add">
+                    <a class="canBtn" href="welcome.php">Cancel</a>
+                </p>
 
-    <?php } ?>
-    
-</form>
+            </ul>
+
+            <?php if (isset($_POST['submit']) && $statement) { ?>
+
+                <p class="alert">DVD successfully added.</p>
+
+            <?php } ?>
+
+        </form>
+        
+    </div>
     
 </div>
 

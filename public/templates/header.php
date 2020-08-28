@@ -17,7 +17,7 @@
     
     <a name="top"></a>
     
-    <section id="header">
+    <section id="header" class="header">
         <h1><a href="index.php">My DVD Tracker</a></h1>
 
         <ul class="nav">

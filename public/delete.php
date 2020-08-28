@@ -142,7 +142,7 @@ foreach($result as $row) {
         </p>
 
         <!-- confirm user wants to delete -->
-        <p>
+        <p class="right">
             <a href='delete.php?id=<?php echo $row['id']; ?>' class="delBtn notification is-danger" onclick="return confirm('Are you sure you want to delete this record? This cannot be undone.');">Delete</a>
         </p>
     </div>
