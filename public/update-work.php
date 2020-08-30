@@ -40,7 +40,7 @@ if (isset($_POST['submit'])) {
                 tv = :tv, 
                 season = :season,
                 releasedate = :releasedate,
-                date = :date 
+                date = :date
             WHERE id = :id";
 
     //prepare sql statement
@@ -49,6 +49,58 @@ if (isset($_POST['submit'])) {
     //execute sql statement
     $statement->execute($film);
 
+    // upload image files to uploads folder
+    $target_dir = "uploads/"; // file storage - folder location
+    $target_file = $target_dir . basename($_FILES["image"]["name"]); // file path to upload
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION)); // file extension type
+
+    // Valid file extensions
+    $extensions_arr = array("jpg","jpeg","png","gif");
+
+    // Check image file for authenticity
+    if(isset($_POST["submit"])) {
+        $check = getimagesize($_FILES["image"]["tmp_name"]);
+        if($check !== false) {
+    //    echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+        } else {
+        echo "File is not an image. Please select a different file.";
+        $uploadOk = 0;
+        }
+    }
+
+    // Check if file already exists in database
+    if (file_exists($target_file)) {
+        echo "A file with this name already exists. Please specify another file name.";
+        $uploadOk = 0;
+    }
+
+    // Check file size
+    if ($_FILES["image"]["size"] > 500000) {
+        echo "Your file is too large. Please choose a smaller file.";
+        $uploadOk = 0;
+    }
+
+    // Check file format
+    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+    && $imageFileType != "gif" ) {
+        echo "Only JPG, JPEG, PNG and GIF files are accepted. Please choose another file type.";
+        $uploadOk = 0;
+    }
+
+    // Check if $uploadOk is set to 0 by an error
+    if ($uploadOk == 0) {
+        echo "Something went wrong. Your file was not uploaded.";
+    // if everything is ok, try to upload file
+    } else {
+        if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+    //    echo basename( $_FILES["image"]["name"]). " was successfully uploaded.";
+        } else {
+        echo "Something went wrong. There was an error uploading your file.";
+        }
+    }
+    
     // update confirmation
     echo "<p class='alert'>Changes saved successfully.</p>";
 
@@ -107,12 +159,12 @@ if (isset($_GET['id'])) {
             <ul class="addRecord">
 
                 <!-- populate with existing data from database -->
-        <!--
+        
                 <li class="label">
                     <label for="id">ID</label>
                     <input type="text" name="id" id="id" value="<?php echo escape($film['id']); ?>" >
                 </li>
-        -->
+        
 
                 <li class="label">
                     <label for="title">Title</label>

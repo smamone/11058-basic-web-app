@@ -1,4 +1,4 @@
-$(document).ready(function(){
+//$(document).ready(function(){
 
 //$("#createRecord").on('change keyup keydown', 'input, textarea, select', function (e) {
 //    $(this).addClass('changed-input');
@@ -18,23 +18,23 @@ $(document).ready(function(){
 //      $('#header').removeClass('customNav');
 //      $('#header').addClass('header');
 //}
-var scrollTop = 0;
-$(window).scroll(function(){
-    scrollTop = $(window).scrollTop();
-    $('.counter').html(scrollTop);
-
-    if (scrollTop >= 100) {
-          $('#header').removeClass('header');
-          $('#header').addClass('customNav');
-        } else if (scrollTop < 100) {
-          $('#header').removeClass('customNav');
-          $('#header').addClass('header');
-    }
-});
+//var scrollTop = 0;
+//$(window).scroll(function(){
+//    scrollTop = $(window).scrollTop();
+//    $('.counter').html(scrollTop);
+//
+//    if (scrollTop >= 100) {
+//          $('#header').removeClass('header');
+//          $('#header').addClass('customNav');
+//        } else if (scrollTop < 100) {
+//          $('#header').removeClass('customNav');
+//          $('#header').addClass('header');
+//    }
+//});
     
 // If record is a tv series
-var tvSeries = document.getElementById("tv");
-var seasonInput = document.getElementById("season");
+//var tvSeries = document.getElementById("tv");
+//var seasonInput = document.getElementById("season");
 
 //foreach($result as $row) {
 //    if (tvSeries == 1){
@@ -46,14 +46,14 @@ var seasonInput = document.getElementById("season");
 //};
     
 // Get the checkbox
-var tvCheckBox = document.getElementById("tv").addEventListener("click", function(tvSeries) { // Show season input if tv checkbox == true
+//var tvCheckBox = document.getElementById("tv").addEventListener("click", function(tvSeries) { // Show season input if tv checkbox == true
 
   // If the checkbox is checked, display the output text
-  if (tvCheckBox.checked == true){
-    seasonInput.style.display = "block";
-  } else {
-    seasonInput.style.display = "none";
-  }
-});
-    
-});
+//  if (tvCheckBox.checked == true){
+//    seasonInput.style.display = "block";
+//  } else {
+//    seasonInput.style.display = "none";
+//  }
+//});
+//    
+//});

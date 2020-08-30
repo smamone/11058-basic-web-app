@@ -55,7 +55,7 @@ if (isset($_POST['submit'])) {
         } else {
         echo "Something went wrong. There was an error uploading your file.";
         }
-}
+    }
     
 // this is called a try/catch statement
 try {

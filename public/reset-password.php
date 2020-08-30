@@ -22,19 +22,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate new password
     if(empty(trim($_POST["new_password"]))){
         $new_password_err = "Please enter the new password.";     
-    } elseif(strlen(trim($_POST["new_password"])) < 6){
+    }elseif(strlen(trim($_POST["new_password"])) < 6){
         $new_password_err = "Password must have at least 6 characters.";
-    } else{
+    }else{
         $new_password = trim($_POST["new_password"]);
     }
     
     // Validate confirm password
     if(empty(trim($_POST["confirm_password"]))){
         $confirm_password_err = "Please confirm the password.";
-    } else{
+    }else{
         $confirm_password = trim($_POST["confirm_password"]);
         if(empty($new_password_err) && ($new_password != $confirm_password)){
-            $confirm_password_err = "Password did not match.";
+            $confirm_password_err = "Passwords do not match.";
         }
     }
         
@@ -58,7 +58,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 session_destroy();
                 header("location: login.php");
                 exit();
-            } else{
+            }else{
                 echo "Oops! Something went wrong. Please try again later.";
             }
         }

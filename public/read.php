@@ -47,7 +47,7 @@ if (isset($_POST['submit'])) {
             <li class="total">
                 <?php
                 // display number of DVDs
-                printf("<span>Total DVDs:</span> %d\n",$statement->rowCount());
+                printf("<span>Total DVDs in collection:</span> %d\n",$statement->rowCount());
                 ?>
             </li>
             
