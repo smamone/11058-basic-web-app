@@ -58,11 +58,11 @@ try {
         ?>
 
         <div class="dvdRecord">
-    <!--
+    
             <p class="id">
             <?php echo $row["id"]; ?>
             </p>
-    -->
+    
 
             <h4 class="title">
             <?php echo $row['title']; ?>

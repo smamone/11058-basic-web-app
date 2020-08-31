@@ -119,7 +119,7 @@ if (isset($_POST['submit'])) {
     </div>
 
 <?php   // this will output all the data from the array
-        // echo '<pre>'; var_dump($row); 
+        // echo '<pre>'; var_dump($row);
 ?>
 
 <!--<hr>-->

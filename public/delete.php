@@ -30,6 +30,9 @@ if (isset($_GET["id"])) {
 
         // Success message
         $success = "DVD successfully deleted.";
+        // update confirmation
+//        $success = echo "<p class='alert'>DVD successfully deleted.</p>";
+
 
     } catch(PDOException $error) {
         // if there is an error, tell us what it is

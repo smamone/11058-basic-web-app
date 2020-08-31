@@ -160,9 +160,10 @@ if (isset($_GET['id'])) {
 
                 <!-- populate with existing data from database -->
         
+                <!-- hide ID field so it can't be edited -->
                 <li class="label">
-                    <label for="id">ID</label>
-                    <input type="text" name="id" id="id" value="<?php echo escape($film['id']); ?>" >
+<!--                    <label for="id">ID</label>-->
+                    <input type="hidden" name="id" id="id" value="<?php echo escape($film['id']); ?>" >
                 </li>
         
 

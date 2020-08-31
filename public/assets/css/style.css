@@ -1,20 +1,31 @@
 html{
-    scroll-behavior: smooth;
+    height: 100%;
+    overflow: hidden;
 }
 
 body{
+    height: 100%;
+    overflow: auto;
     background-color: #f9f9f9;
     background-repeat: no-repeat;
     background-position: top;
-    padding: 5rem auto;
     font-family: 'Arial';
     position: relative;
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+.section{
+    min-height: 100%;
+    padding: 0 1.5rem 3rem;
 }
 
 .container{
     width: 90%;
+    min-height: 100%;
     margin: 0 auto;
     padding-bottom: 3rem;
+    position: relative;
 }
 
 .content{
@@ -41,8 +52,10 @@ footer{
     background-color: #333;
     color: #FFF;
     text-align: center;
-    position: absolute;
+    margin-top: auto;
+    position: relative;
     bottom: 0;
+    left: 0;
 }
 
 footer > p{
@@ -51,7 +64,7 @@ footer > p{
 
 h1{
     font-family: 'BebasNeue', Arial;
-    font-size: 5rem;
+    font-size: 4.5rem;
     line-height: 6rem;
     text-align: center;
     margin-bottom: 1rem;
@@ -150,11 +163,6 @@ li a:hover{
     border-radius: 0 0 0.75rem 0.75rem;
     z-index: 1;
 }
-
-.section{
-    padding: 0 1.5rem 3rem;
-}
-
 .row{
     width: 100%;
 }
@@ -397,9 +405,10 @@ li>label[for="season"], label[for="season"], #season{
 }
 
 .submenu{
-    margin: 1.5rem;
+    margin: 1.5rem auto;
     padding: 1rem;
-    border-bottom: 0.01rem solid #333;
+    background-color: #e1e6ea;
+/*    border-bottom: 0.01rem solid #333;*/
     height: 3.5rem;
     font-size: 1.2rem;
     text-align: center;
@@ -430,4 +439,79 @@ li>label[for="season"], label[for="season"], #season{
 
 .borderBottom{
     border-bottom: 0.01rem solid #cdcdcd;
+}
+
+@media screen and (max-width: 1230px){
+    .dvdRecord{
+        width: 45%;
+    }
+}
+
+@media screen and (max-width: 830px){
+    .nav{
+        width: 80%;
+    }
+    
+    .nav .btn{
+        display: block;
+        margin: 1rem 0;
+    }
+
+    #heading{
+        width: auto;
+    }
+    
+    #heading h2{
+        font-size: 3rem;
+    }
+    
+    .submenu{
+        height: 6.5rem;
+    }
+    
+    .centre{
+        width: 100%;
+    }
+    
+    .field label{
+        width: 100%;
+        text-align: center;
+    }
+    
+    .help{
+        text-align: center;
+    }
+    
+    .dvdRecord{
+        width: 100%;
+        margin: 1rem auto;
+    }
+    
+    .total{
+        display: block;
+        width: 100%;
+        margin-bottom: 0.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 0.01rem solid #333;
+        float: none;
+    }
+    
+    .dropdown{
+        display: block;
+        margin: 0 auto;
+        float: none;
+    }
+    
+    .content{
+        width: 100%;
+    }
+    
+    .addRecord label{
+        width: 100%;
+        text-align: center;
+    }
+    
+    .addRecord label input{
+        width: 100%;
+    }
 }
