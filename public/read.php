@@ -51,12 +51,18 @@ if (isset($_POST['submit'])) {
                 ?>
             </li>
             
+            <input type="text" id="search" onchange="searchFilter()" placeholder="Search for a DVD" title="Type in a name">
+            
             <li class="dropdown">
                 <label for="sort"><span>Sort by</span></label>
-                <select name="sort" id="sort">
-                    <option value="default">ID (default)</option>
-                    <option value="title">Title</option>
-                    <option value="year">Year</option>
+                
+                <select name="sort" id="sort" onchange="sort(this.value);">
+                    <option value="id">ID (default)
+                    </option>
+                    <option value="title">Title
+                    </option>
+                    <option value="year">Year
+                    </option>
                 </select>
             </li>
         </ul>

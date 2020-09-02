@@ -163,6 +163,14 @@ li a:hover{
     border-radius: 0 0 0.75rem 0.75rem;
     z-index: 1;
 }
+
+#heading h2{
+    display: block;
+    color: #536878;
+    text-shadow: 0 13.36px 8.896px #1f272d,0 -2px 1px #e1e6ea;
+    letter-spacing: 0.05rem;
+}
+
 .row{
     width: 100%;
 }
@@ -197,6 +205,7 @@ form{
 label{
     width: 8.5rem;
     text-align: left;
+    margin-top: 0.35rem;
     margin-right: 1rem;
     float: left;
 }
@@ -204,6 +213,7 @@ label{
 .other{
     margin-top: 1rem;
     padding-top: 2rem;
+    border-top: 0.01rem solid #cdcdcd;
     border-top: 0.01rem solid #cdcdcd;
 }
 
@@ -213,8 +223,27 @@ label{
 
 input{
     width: 15rem;
+    padding: 0.5rem;
     text-align: left;
+    outline: none;
+    border-style: none;
+    border-bottom: 0.01rem solid #3A3C54;
+    background-color: transparent;
 }
+
+input:focus{
+    background-color: #e1e6ea;
+}
+
+#image{
+    width: 15rem;
+    padding: 0.5rem;
+    text-align: left;
+    outline: none;
+    border-style: none;
+    background-color: none;
+}
+
 
 .btn,
 .addBtn,
@@ -272,7 +301,7 @@ input .btn, .btn{
 }
 
 .delBtn, .resBtn, .canBtn{
-    padding: 0.5rem 1.25rem;
+    padding: 0.75rem 1.5rem;
     margin: 0.75rem 0 0;
     background-color: #f14668;
 }
@@ -280,6 +309,19 @@ input .btn, .btn{
 .delBtn:hover, .resBtn:hover, .canBtn:hover{
     background-color: #d11141;
     color: #FFF;
+}
+
+.canBtn{
+    padding: 0.5rem 1.25rem;
+    margin: 0.75rem 0 0;
+    color: #333;
+    background-color: #f2f2f2;
+    border: 0.03rem solid #ccc;
+}
+
+.canBtn:hover{
+    background-color: #e6e6e6;
+    color: #333;
 }
 
 .viewBtn{

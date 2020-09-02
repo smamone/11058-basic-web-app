@@ -163,6 +163,7 @@ try {
 
                 <p class="field">
                     <input class="addBtn button notification is-primary" type="submit" name="submit" value="Add">
+                    <input type="reset" class="resBtn" value="Reset">
                     <a class="canBtn" href="welcome.php">Cancel</a>
                 </p>
 
