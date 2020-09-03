@@ -1,10 +1,14 @@
 <?php
 
-// this code will only execute after the submit button is clicked
-if (isset($_POST['submit'])) {
+//session_start();
+// this code will only execute after the submit button is clicked in the search field
+if (isset($_POST['search']) or isset($_POST['submit'])) {
 	
     // include the config file that we created before
     require "../config.php";
+    
+    // to escape the search term
+	require "common.php";
     
     // this is called a try/catch statement 
 	try {
@@ -12,7 +16,28 @@ if (isset($_POST['submit'])) {
         $connection = new PDO($dsn, $username, $password, $options);
 		
         // SECOND: Create the SQL 
-        $sql = "SELECT * FROM dvds"; // dvds table
+//        $sql = "SELECT * FROM dvds"; // dvds table
+        if(isset($_POST['search'])){ // search through results
+//			$userid = $_SESSION['id'];
+			$query = escape($_POST['query']);
+            
+            // select any results that match any part of the title, director, starring, genre or releasedate fields
+			$sql = "SELECT DISTINCT * FROM dvds WHERE 
+			title LIKE '%" . $query . "%'
+				OR 
+			director LIKE '%" . $query . "%'
+				OR
+			starring LIKE '%" . $query . "%'
+				OR
+			genre LIKE '%" . $query . "%'
+				OR
+			releasedate LIKE '%" . $query . "%'
+				";
+		}else{
+//			$sql = "SELECT * FROM dvds WHERE userid =" . $_SESSION['id'];
+            // otherwise show all results
+            $sql = "SELECT * FROM dvds";
+		}
         
         // THIRD: Prepare the SQL
         $statement = $connection->prepare($sql);
@@ -34,7 +59,7 @@ if (isset($_POST['submit'])) {
 <div class="container">
 
 <?php  
-    if (isset($_POST['submit'])) {
+    if (isset($_POST['search']) or isset($_POST['submit'])) {
         // if there are some results
         if ($result && $statement->rowCount() > 0) { ?>
     
@@ -44,27 +69,23 @@ if (isset($_POST['submit'])) {
 
     <div class="submenu">
         <ul>
-            <li class="total">
+            <li class="col total">
                 <?php
-                // display number of DVDs
+            
+                // display total number of DVDs showing
                 printf("<span>Total DVDs in collection:</span> %d\n",$statement->rowCount());
                 ?>
             </li>
             
-            <input type="text" id="search" onchange="searchFilter()" placeholder="Search for a DVD" title="Type in a name">
-            
-            <li class="dropdown">
-                <label for="sort"><span>Sort by</span></label>
-                
-                <select name="sort" id="sort" onchange="sort(this.value);">
-                    <option value="id">ID (default)
-                    </option>
-                    <option value="title">Title
-                    </option>
-                    <option value="year">Year
-                    </option>
-                </select>
-            </li>
+            <li class="col query">
+                <form method="post">
+                    <input type="search" id="search" name="query" placeholder="Search for a DVD">
+                    <input type="submit" class="goBtn" name="search" value="Go">
+<!--                    <i class='fas fa-search'></i>-->
+                    <p>OR</p>
+                    <input class="clearBtn" type="submit" name="submit" value="View all">
+                </form>
+            </li>            
         </ul>
     </div>
 
@@ -124,27 +145,38 @@ if (isset($_POST['submit'])) {
         </p>
     </div>
 
+    <?php } //close the foreach
+    }
+    else
+    {
+        if(isset($_POST['search'])){
+            echo "<p>No results matched your search of '" . $query . "'.</p>";
+        }
+        else
+        {
+            echo "<p>There are currently no DVDs in your collection.</p>";
+        }
+    }
+    ?>
+
 <?php   // this will output all the data from the array
         // echo '<pre>'; var_dump($row);
 ?>
 
-<!--<hr>-->
-            <?php }; // close the foreach
-        }; 
-    };
+<?php }; // close the foreach 
 
 ?>
 
-<div class="row">
-    <form class="formBtn" method="post">
-        <input class="viewBtn" type="submit" name="submit" value="View all DVDs">
-    </form>
+    <div class="row">
+        <form class="formBtn" method="post">
+            <input class="viewBtn" type="submit" name="submit" value="View all DVDs">
+        </form>
 
-    <!-- scroll to top button -->
-    <a class="top" href="#top">
-        <i class="fas fa-chevron-circle-up"></i>
-    </a>
-</div>
+        <!-- scroll to top button -->
+        <a class="top" href="#top">
+            <i class="fas fa-chevron-circle-up"></i>
+        </a>
+    </div>
 
 </div>
 </section>

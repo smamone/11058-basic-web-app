@@ -59,25 +59,25 @@ $(document).ready(function(){
 
     
     // search filter results
-    function searchFilter(){
-        var input, filter, records, title, term, i, txtValue;
-        input = document.getElementById("search");
-        filter = input.value.toUpperCase();
-        records = document.getElementsByClassName("dvdRecord");
-        title = records.getElementsByClassName("title");
-        
-        for (i = 0; i < records.length; i++) {
-        term = records[i].getElementsByClassName("title")[0];
-            
-        if (term) {
-            txtValue = term.textContent || term.innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            records[i].style.display = "";
-            } else {
-            records[i].style.display = "none";
-          }
-        }       
-        }
-    }
+//    function searchFilter(){
+//        var input, filter, records, title, term, i, txtValue;
+//        input = document.getElementById("search");
+//        filter = input.value.toUpperCase();
+//        records = document.getElementsByClassName("dvdRecord");
+//        title = records.getElementsByClassName("title");
+//        
+//        for (i = 0; i < records.length; i++) {
+//        term = records[i].getElementsByClassName("title")[0];
+//            
+//        if (term) {
+//            txtValue = term.textContent || term.innerText;
+//            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+//            records[i].style.display = "";
+//            } else {
+//            records[i].style.display = "none";
+//          }
+//        }       
+//        }
+//    }
     
 });

@@ -1,15 +1,36 @@
 <?php 
 	
-// include the config file
-require "../config.php"; 
+// include the config file that we created before
+require "../config.php";
 
-// this is called a try/catch statement 
+// to escape the search term
+require "common.php";
+
+// this is called a try/catch statement
 try {
     // FIRST: Connect to the database
     $connection = new PDO($dsn, $username, $password, $options);
 
-    // SECOND: Create the SQL 
-    $sql = "SELECT * FROM dvds"; // dvds table
+    // SECOND: Create the SQL
+    if(isset($_POST['search'])){ // search through results
+        $query = escape($_POST['query']);
+
+        // select any results that match any part of the title, director, starring, genre or releasedate fields
+        $sql = "SELECT DISTINCT * FROM dvds WHERE 
+        title LIKE '%" . $query . "%'
+            OR 
+        director LIKE '%" . $query . "%'
+            OR
+        starring LIKE '%" . $query . "%'
+            OR
+        genre LIKE '%" . $query . "%'
+            OR
+        releasedate LIKE '%" . $query . "%'
+            ";
+    }else{
+        // otherwise show all results
+        $sql = "SELECT * FROM dvds";
+    }
 
     // THIRD: Prepare the SQL
     $statement = $connection->prepare($sql);
@@ -19,11 +40,9 @@ try {
     $result = $statement->fetchAll();
 
 } catch(PDOException $error) {
-    
     // if there is an error, tell us what it is
     echo "<p>" . $sql . "<br>" . $error->getMessage() . "</p>";
 }
-
 ?>
 
 <?php include "templates/header.php"; ?>
@@ -36,21 +55,25 @@ try {
         </div>
 
         <div class="submenu">
-            <div class="total">
-                <?php
-                // display number of DVDs
-                printf("<span>Total DVDs in collection:</span> %d\n",$statement->rowCount());
-                ?>
-            </div>
+            <ul>
+                <li class="col total">
+                    <?php
 
-            <div class="dropdown">
-                <label for="sort"><span>Sort by</span></label>
-                <select name="sort" id="sort">
-                    <option value="default">ID (default)</option>
-                    <option value="title">Title</option>
-                    <option value="year">Year</option>
-                </select>
-            </div>
+                    // display total number of DVDs showing
+                    printf("<span>Total DVDs in collection:</span> %d\n",$statement->rowCount());
+                    ?>
+                </li>
+
+                <li class="col query">
+                    <form method="post">
+                        <input type="search" id="search" name="query" placeholder="Search for a DVD">
+                        <input type="submit" class="goBtn" name="search" value="Go">
+    <!--                    <i class='fas fa-search'></i>-->
+                        <p>OR</p>
+                        <input class="clearBtn" type="submit" name="submit" value="View all">
+                    </form>
+                </li>            
+            </ul>
         </div>
 
         <?php // This is a loop, which will loop through each result in the array

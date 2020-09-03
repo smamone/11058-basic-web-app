@@ -450,33 +450,73 @@ li>label[for="season"], label[for="season"], #season{
     margin: 1.5rem auto;
     padding: 1rem;
     background-color: #e1e6ea;
-/*    border-bottom: 0.01rem solid #333;*/
     height: 3.5rem;
     font-size: 1.2rem;
     text-align: center;
 }
 
-.total{
-    display: inline-block;
+.col{
     width: 45%;
-    float: left;
-}
-
-.dropdown{
-    margin: 0 auto;
-}
-
-.dropdown label{
-    width: 5rem;
-}
-
-#sort{
     display: inline-block;
     float: left;
 }
 
-.total span, .dropdown span{
+.total{
+}
+
+.query{
+    margin-top: -0.4rem;
+}
+
+.query form, .clear form{
+    padding: 0;
+}
+
+.query form input{
+    font-size: 1rem;
+}
+
+.query form input:focus{
+    background-color: #FFF;
+}
+
+.query p{
+    display: inline-block;
     font-weight: bold;
+}
+
+.goBtn{
+    display: inline-block;
+    width: auto;
+    margin: 0 1.5rem 0 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    color: #FFF;
+    background-color: #3A3C54;
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+}
+
+.clearBtn{
+    display: inline-block;
+    width: auto;
+    margin-left: 1.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    color: #FFF;
+    background-color: #3A3C54;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.goBtn:hover, .clearBtn:hover{
+    background-color: #141d26;
 }
 
 .borderBottom{
