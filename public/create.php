@@ -2,7 +2,7 @@
 // this code will only execute after the submit button is clicked
 if (isset($_POST['submit'])) {
 
-    // include the config file that we created before
+    // include the config file
     require "../config.php";
 
     // upload image files to uploads folder
@@ -11,11 +11,11 @@ if (isset($_POST['submit'])) {
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION)); // file extension type
 
-    // Valid file extensions
+    // valid file extensions
     $extensions_arr = array("jpg","jpeg","png","gif");
 
-    // Check image file for authenticity
-    if(isset($_POST["submit"])) {
+    // check file is an image
+    if(isset($_POST["submit"]) && (empty($_POST))) {
         $check = getimagesize($_FILES["image"]["tmp_name"]);
         if($check !== false) {
     //    echo "File is an image - " . $check["mime"] . ".";
@@ -26,33 +26,33 @@ if (isset($_POST['submit'])) {
         }
     }
 
-    // Check if file already exists in database
-    if (file_exists($target_file)) {
+    // if image with the same file name already exists in database and field is not empty**
+    if(file_exists($target_file)) {
         echo "A file with this name already exists. Please specify another file name.";
         $uploadOk = 0;
     }
 
-    // Check file size
-    if ($_FILES["image"]["size"] > 500000) {
+    // if the file size is over 500KB
+    if($_FILES["image"]["size"] > 500000) {
         echo "Your file is too large. Please choose a smaller file.";
         $uploadOk = 0;
     }
 
-    // Check file format
+    // if image does not match the following formats and is not empty**
     if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-    && $imageFileType != "gif" ) {
+    && $imageFileType != "gif") {
         echo "Only JPG, JPEG, PNG and GIF files are accepted. Please choose another file type.";
         $uploadOk = 0;
     }
 
-    // Check if $uploadOk is set to 0 by an error
-    if ($uploadOk == 0) {
+    // check if $uploadOk is set to 0 by an error and field is not empty**
+    if($uploadOk == 0 && (!empty($_POST))) {
         echo "Something went wrong. Your file was not uploaded.";
     // if everything is ok, try to upload file
-    } else {
-        if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+    }else{
+        if(move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
     //    echo basename( $_FILES["image"]["name"]). " was successfully uploaded.";
-        } else {
+        }else{
         echo "Something went wrong. There was an error uploading your file.";
         }
     }
@@ -116,14 +116,22 @@ try {
 
         <h2>Add a DVD</h2>
 
+        <?php 
+        // show confirmation message on successful form submission
+        if (isset($_POST['submit']) && $statement) {
+
+            echo "<p class='alert'>DVD successfully added.</p>";
+
+        } ?>
+
         <!--form to collect data for each DVD-->
         <form id="createRecord" method="post" enctype="multipart/form-data">
 
             <ul class="addRecord">
 
                 <li class="label">
-                    <label for="title">Title</label> 
-                    <input type="text" name="title" id="title">
+                    <label for="title">Title<span class="req">*</span></label> 
+                    <input type="text" name="title" id="title" required>
                 </li>
 
                 <li class="label">
@@ -148,9 +156,9 @@ try {
 
                 <li class="label">
                     <label for="tv" class="checkbox">TV Series</label>
-                    <input class="checkbox" type="checkbox" name="tv" id="tv" value="1">
+                    <input class="checkbox" type="checkbox" name="tv" id="tv" value="Yes">
                 </li>
-
+                
                 <li class="label">
                     <label for="season">Season</label>
                     <input type="number" name="season" id="season">
@@ -168,12 +176,6 @@ try {
                 </p>
 
             </ul>
-
-            <?php if (isset($_POST['submit']) && $statement) { ?>
-
-                <p class="alert">DVD successfully added.</p>
-
-            <?php } ?>
 
         </form>
         

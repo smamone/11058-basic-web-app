@@ -8,17 +8,12 @@ require "common.php";
 
 // run when submit button is clicked
 if (isset($_POST['submit'])) {
-		
-    if(!empty($_FILES["image"]["name"])){
-        include "upload.php";
-    }
-    
     try {
         $connection = new PDO($dsn, $username, $password, $options);  
 
-    } catch(PDOException $error) {
+        } catch(PDOException $error) {
         echo "<p>" . $sql . "<br>" . $error->getMessage() . "</p>";
-    }
+    }        
 
     // grab elements from form and set as varaible
     $film =[
@@ -35,13 +30,14 @@ if (isset($_POST['submit'])) {
     ];
 
     // create SQL statement
-    $sql = "UPDATE `dvds` 
-            SET title = :title, 
-                image = :image, 
-                director = :director, 
-                starring = :starring, 
-                genre = :genre, 
-                tv = :tv, 
+    $sql = "UPDATE `dvds`
+            SET id = :id,
+                title = :title,
+                image = :image,
+                director = :director,
+                starring = :starring,
+                genre = :genre,
+                tv = :tv,
                 season = :season,
                 releasedate = :releasedate,
                 date = :date
@@ -52,6 +48,9 @@ if (isset($_POST['submit'])) {
 
     //execute sql statement
     $statement->execute($film);
+
+    // update confirmation
+    echo "<p class='alert'>Changes saved successfully.</p>";
 
 }
 
@@ -82,7 +81,7 @@ if (isset($_GET['id'])) {
         $statement->execute();
 
         // attach the sql statement to the new film variable so we can access it in the form
-        $film = $statement->fetch(PDO::FETCH_ASSOC);
+        $film = $statement->fetch(PDO::FETCH_ASSOC); // $work
 
     } catch(PDOExcpetion $error) {
         echo "<p>" . $sql . "<br>" . $error->getMessage() . "</p>";
@@ -107,14 +106,11 @@ if (isset($_GET['id'])) {
 
             <ul class="addRecord">
 
-                <!-- populate with existing data from database -->
-        
-                <!-- hide ID field so it can't be edited -->
+                <!-- populate with existing data in database -->
                 <li class="label">
-<!--                    <label for="id">ID</label>-->
-                    <input type="hidden" name="id" id="id" value="<?php echo escape($film['id']); ?>" >
+                    <label for="id">ID</label>
+                    <input type="text" name="id" id="id" value="<?php echo escape($film['id']); ?>" >
                 </li>
-        
 
                 <li class="label">
                     <label for="title">Title</label>
@@ -124,7 +120,6 @@ if (isset($_GET['id'])) {
                 <li class="label">
                     <label for="image">Image</label>
                     <input type="image" name="image" id="image" value="<?php echo escape($film['image']); ?>">
-                    <input type="file" name="image" id="image" value="<?php echo escape($film['image']); ?>">
                 </li>
 
                 <li class="label">
@@ -157,12 +152,12 @@ if (isset($_GET['id'])) {
                     <input type="number" name="releasedate" id="releasedate" value="<?php echo escape($film['releasedate']); ?>">
                 </li>
 
-                <p class="field">
-                    <input class="subBtn button notification is-primary" type="submit" name="submit" value="Save">
-                    <a class="canBtn" href="update.php">Cancel</a>
-                </p>
-
             </ul>
+
+            <p class="field">
+                <input class="subBtn button notification is-primary" type="submit" name="submit" value="Save">
+                <a class="canBtn" href="update.php">Cancel</a>
+            </p>
 
         </form>
         
@@ -170,4 +165,4 @@ if (isset($_GET['id'])) {
     
 </div>
 
-<?php include "templates/footer.php"; ?>
+<?php include "templates/footer.php"; ?> 

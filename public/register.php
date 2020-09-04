@@ -76,8 +76,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             
             // Attempt to execute the prepared statement
             if($stmt->execute()){
-                // Redirect to login page
-                header("location: login.php");
+                
+                // Show registration confirmation
+                echo "<p class='alert'>Registration successful. You will automatically be redirected to the log in page.</p>
+                <p>If you are not redirected in 5 seconds, <a href='login.php'>click here</a>.</p>";
+                
+                // Registration successful. Destroy the session, and redirect to login page
+                session_destroy();
+                    
+                // Redirect to log in page after 3 seconds
+                header("refresh: 5; url=login.php");
+                exit();
+                
             }else{
                 echo "Oh no! Something went wrong. Please try again later.";
             }
@@ -105,7 +115,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <h2>Sign Up</h2>
         
         <div class="content">
-            <p>Please fill this form to create an account.</p>
+            <p>Please complete this form to create an account.</p>
             
             <hr>
 		

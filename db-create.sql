@@ -1,18 +1,18 @@
-CREATE DATABASE dvdDatabase; /* ben_test */
+CREATE DATABASE dvdDatabase;
 
 use dvdDatabase;
 
-CREATE TABLE dvds ( /* works */
+CREATE TABLE dvds (
 	id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-	title VARCHAR(50) NOT NULL, /* artistname */
-    image VARCHAR(50), /* NEW */
-	director VARCHAR(30), /* worktitle */
-	starring VARCHAR(50), /* workdate */
-    genre VARCHAR(15), /* worktype */
-    tv BOOLEAN(1), /* NEW */
-    season INT(2), /* NEW */
-    releasedate INT(4) UNSIGNED, /* NEW */
-	date TIMESTAMP /* date */
+	title VARCHAR(50) NOT NULL,
+    image VARCHAR(50),
+	director VARCHAR(50),
+	starring VARCHAR(100),
+    genre VARCHAR(50),
+    tv LONGTEXT,
+    season INT(2),
+    releasedate YEAR(4),
+	date TIMESTAMP
 );
 
 CREATE TABLE users (

@@ -166,7 +166,7 @@ li a:hover{
 
 #heading h2{
     display: block;
-    color: #536878;
+    color: #FFF;
     text-shadow: 0 13.36px 8.896px #1f272d,0 -2px 1px #e1e6ea;
     letter-spacing: 0.05rem;
 }
@@ -233,6 +233,11 @@ input{
 
 input:focus{
     background-color: #e1e6ea;
+}
+
+label span .req{
+    font-weight: bold;
+    color: red;
 }
 
 #image{
@@ -384,6 +389,16 @@ input .btn, .btn{
     border: 0.05rem solid #CCC;
 }
 
+.noResult{
+    font-size: 1.1rem;
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.noResult span{
+    font-weight: bold;
+}
+
 .director{
     margin-top: 2rem;
 }
@@ -400,9 +415,11 @@ input .btn, .btn{
     
 }
 
+/*
 li>label[for="season"], label[for="season"], #season{
-/*    display: none;*/
+    display: none;
 }
+*/
 
 .release{
     

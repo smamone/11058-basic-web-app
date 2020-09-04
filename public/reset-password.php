@@ -40,6 +40,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         
     // Check input errors before updating the database
     if(empty($new_password_err) && empty($confirm_password_err)){
+        
         // Prepare an update statement
         $sql = "UPDATE users SET password = :password WHERE id = :id";
         
@@ -54,10 +55,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             
             // Attempt to execute the prepared statement
             if($stmt->execute()){
+                
+                // Show registration confirmation
+                echo "<p class='alert'>New password saved successfully. You will automatically be redirected to the log in page.</p>
+                <p>If you are not redirected in 5 seconds, <a href='login.php'>click here</a>.</p>";
+                
                 // Password updated successfully. Destroy the session, and redirect to login page
                 session_destroy();
-                header("location: login.php");
+                    
+                // Redirect to log in page after 3 seconds
+                header("refresh: 5; url=login.php");
                 exit();
+                
             }else{
                 echo "Oops! Something went wrong. Please try again later.";
             }

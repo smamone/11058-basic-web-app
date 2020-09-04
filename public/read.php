@@ -34,7 +34,6 @@ if (isset($_POST['search']) or isset($_POST['submit'])) {
 			releasedate LIKE '%" . $query . "%'
 				";
 		}else{
-//			$sql = "SELECT * FROM dvds WHERE userid =" . $_SESSION['id'];
             // otherwise show all results
             $sql = "SELECT * FROM dvds";
 		}
@@ -94,6 +93,7 @@ if (isset($_POST['search']) or isset($_POST['submit'])) {
     ?>
 
     <div class="dvdRecord">
+        
         <p class="id">
         <?php echo $row["id"]; ?>
         </p>
@@ -104,8 +104,12 @@ if (isset($_POST['search']) or isset($_POST['submit'])) {
 
         <p class="image">
             <?php
-            if( $row["image"] !== NULL && $row["image"] !== "" ){
-                echo "<img src='uploads/" . $row["image"] . "' alt='" . $row['title'] .", season " . $row['season'] . "'>";
+            if( $row["image"] !== NULL && 
+               $row["image"] !== "" ){
+                echo "<img src='uploads/" . 
+                    $row["image"] . "' alt='" . 
+                    $row['title'] .", season " . 
+                    $row['season'] . "'>";
             }
             else
             {
@@ -115,46 +119,79 @@ if (isset($_POST['search']) or isset($_POST['submit'])) {
         </p>
 
         <p class="director">
-            <h6 class="labelResult">Director:</h6>
-        <?php echo $row['director']; ?>
+            <?php
+            // if director is not empty, display info
+            if($row["director"] !== ""){
+            ?>
+                <h6 class="labelResult">Director:</h6>
+                <?php echo $row['director']; ?>
+            <?php
+            }
+            ?>
         </p>
 
         <p class="starring">
-            <h6 class="labelResult">Starring:</h6>
-        <?php echo $row['starring']; ?>
+            <?php
+            // if starring is not empty, display info
+            if($row["starring"] !== ""){
+            ?>
+                <h6 class="labelResult">Starring:</h6>
+                <?php echo $row['starring']; ?>
+            <?php
+            }
+            ?>
         </p>
 
         <p class="genre">
-            <h6 class="labelResult">Genre:</h6>
-        <?php echo $row['genre']; ?>
+            <?php
+            // if genre is not empty, display info
+            if($row["genre"] !== ""){
+            ?>
+                <h6 class="labelResult">Genre:</h6>
+                <?php echo $row['genre']; ?>
+            <?php
+            }
+            ?>
         </p>
 
         <p class="tv">
-            <h6 class="labelResult">TV Series:</h6>
-        <?php echo $row['tv']; ?>
-        </p>
+            <?php
+            // if tv series is not NULL, display tv and season info
+            if($row["tv"] !== NULL){
+            ?>
+                    <h6 class="labelResult">TV Series:</h6>
+                    <?php echo $row['tv']; ?>
+                </p>
 
-        <p class="season">
-            <h6 class="labelResult">Season:</h6>
-        <?php echo $row['season']; ?>
+                <p class="season">
+                    <h6 class="labelResult">Season:</h6>
+                    <?php echo $row['season']; ?>
+            <?php
+            }
+            ?>
         </p>
 
         <p class="release">
-            <h6 class="labelResult">Release date:</h6>
-        <?php echo $row['releasedate']; ?>
+            <?php
+            // if releasedate is left blank, display info
+            if($row["releasedate"] !== "0000"){
+            ?>
+                <h6 class="labelResult">Release date:</h6>
+                <?php echo $row['releasedate']; ?>
+            <?php
+            }
+            ?>
         </p>
     </div>
 
     <?php } //close the foreach
-    }
-    else
-    {
+    }else{
         if(isset($_POST['search'])){
-            echo "<p>No results matched your search of '" . $query . "'.</p>";
-        }
-        else
-        {
-            echo "<p>There are currently no DVDs in your collection.</p>";
+            echo "<p class='noResult'>No results matched your search of '<span>" . $query . "</span>'.
+            <br>
+            Please try a different search term.</p>";
+        }else{
+            echo "<p class='noResult'>There are currently no DVDs in your collection.</p>";
         }
     }
     ?>

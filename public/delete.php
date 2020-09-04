@@ -128,8 +128,12 @@ try {
 
             <p class="image">
                 <?php
-                if( $row["image"] !== NULL && $row["image"] !== "" ){
-                    echo "<img src='uploads/" . $row["image"] . "' alt='" . $row['title'] .", season " . $row['season'] . "'>";
+                if( $row["image"] !== NULL && 
+                   $row["image"] !== "" ){
+                    echo "<img src='uploads/" . 
+                        $row["image"] . "' alt='" . 
+                        $row['title'] .", season " . 
+                        $row['season'] . "'>";
                 }
                 else
                 {
@@ -139,33 +143,68 @@ try {
             </p>
 
             <p class="director">
-                <h6 class="labelResult">Director:</h6>
-            <?php echo $row['director']; ?>
+                <?php
+                // if director is not empty, display info
+                if($row["director"] !== ""){
+                ?>
+                    <h6 class="labelResult">Director:</h6>
+                    <?php echo $row['director']; ?>
+                <?php
+                }
+                ?>
             </p>
 
             <p class="starring">
-                <h6 class="labelResult">Starring:</h6>
-            <?php echo $row['starring']; ?>
+                <?php
+                // if starring is not empty, display info
+                if($row["starring"] !== ""){
+                ?>
+                    <h6 class="labelResult">Starring:</h6>
+                    <?php echo $row['starring']; ?>
+                <?php
+                }
+                ?>
             </p>
 
             <p class="genre">
-                <h6 class="labelResult">Genre:</h6>
-            <?php echo $row['genre']; ?>
+                <?php
+                // if genre is not empty, display info
+                if($row["genre"] !== ""){
+                ?>
+                    <h6 class="labelResult">Genre:</h6>
+                    <?php echo $row['genre']; ?>
+                <?php
+                }
+                ?>
             </p>
 
             <p class="tv">
-                <h6 class="labelResult">TV Series:</h6>
-            <?php echo $row['tv']; ?>
-            </p>
+                <?php
+                // if tv series is not NULL, display tv and season info
+                if($row["tv"] !== NULL){
+                ?>
+                        <h6 class="labelResult">TV Series:</h6>
+                        <?php echo $row['tv']; ?>
+                    </p>
 
-            <p class="season">
-                <h6 class="labelResult">Season:</h6>
-            <?php echo $row['season']; ?>
+                    <p class="season">
+                        <h6 class="labelResult">Season:</h6>
+                        <?php echo $row['season']; ?>
+                <?php
+                }
+                ?>
             </p>
 
             <p class="release">
-                <h6 class="labelResult">Release date:</h6>
-            <?php echo $row['releasedate']; ?>
+                <?php
+                // if releasedate is left blank, display info
+                if($row["releasedate"] !== "0000"){
+                ?>
+                    <h6 class="labelResult">Release date:</h6>
+                    <?php echo $row['releasedate']; ?>
+                <?php
+                }
+                ?>
             </p>
 
             <!-- confirm user wants to delete -->
