@@ -69,7 +69,6 @@ if (isset($_POST['search']) or isset($_POST['submit'])) {
     <div class="submenu">
         <ul>
             <li class="col total">
-            
                 <p class="">Displaying <b>
                 <?php
                 // display total number of DVDs showing
@@ -108,16 +107,24 @@ if (isset($_POST['search']) or isset($_POST['submit'])) {
 
         <p class="image">
             <?php
-            if( $row["image"] !== NULL && 
-               $row["image"] !== "" ){
+            // if image exists and record is a tv series, add alt tag using title and season
+            if( $row["image"] !== NULL 
+               && $row["image"] !== "" 
+               && $row["tv"] == "Yes" ){
                 echo "<img src='uploads/" . 
                     $row["image"] . "' alt='" . 
                     $row['title'] .", season " . 
                     $row['season'] . "'>";
-            }
-            else
-            {
-                echo "<p class='noImage'>No image available.</p>";
+            // if image exists and record is not a tv series, add alt tag using title only
+            }else if( $row["image"] !== NULL 
+             && $row["image"] !== "" 
+             && $row["tv"] !== "Yes" ){
+                echo "<img src='uploads/" . 
+                    $row["image"] . "' alt='" . 
+                    $row['title'] ."'>";
+            // if image does not exist, display "no image available"
+            }else{
+                echo "<p class='noImage'>No image available</p>";
             }
             ?>
         </p>
@@ -170,13 +177,12 @@ if (isset($_POST['search']) or isset($_POST['submit'])) {
                 <p class="season">
                     <h6 class="labelResult">Season:</h6>
                     <?php
-                    
-                    // if season  was entered by user
-                    if($row["season"] !== 0){
-                        echo $row['season'];
                     // if season was not entered by user
-                    }else{
+                    if($row["season"] == 0){
                         echo "Not specified";
+                    // if season was entered by user
+                    }else{
+                        echo $row['season'];
                     }
                     ?>
             <?php
@@ -204,7 +210,8 @@ if (isset($_POST['search']) or isset($_POST['submit'])) {
             <br>
             Please try a different search term.</p>";
         }else{
-            echo "<p class='noResult'>There are currently no DVDs in your collection.</p>";
+            echo "<p class='noResult'>There are currently no DVDs in your collection.<br>
+            To add to your database, use the Add button above.</p>";
         }
     }
     ?>

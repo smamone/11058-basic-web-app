@@ -144,7 +144,7 @@ li a:hover{
 .header{
     width: 100%;
     padding: 2rem 0 2.5rem;
-    background-color: darkturquoise;
+    background-color: #48c9b0;
     z-index: 5;
 /*    position: fixed;*/
     top: 0;
@@ -204,7 +204,7 @@ li a:hover{
 
 form{
     margin: 0 auto;
-    padding: 3rem;
+    padding: 1rem 3rem 3rem;
     background: #FFF 0.5;
 }
 
@@ -241,7 +241,14 @@ input:focus{
     background-color: #e1e6ea;
 }
 
-label span .req{
+.note{
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: #999;
+}
+
+.req{
     font-weight: bold;
     color: red;
 }
@@ -466,7 +473,7 @@ li>label[for="season"], label[for="season"], #season{
 .dvdRecord{
     display: inline-block;
     background-color: #EEE;
-    border-bottom: 0.1rem solid #536878;
+    border-bottom: 0.2rem solid #536878;
     padding: 2rem;
     margin: 1rem;
     width: 30%;
@@ -486,11 +493,11 @@ li>label[for="season"], label[for="season"], #season{
 }
 
 .alert{
-    background-color: lightseagreen;
+    background-color: #48c9b0;
     color: #FFF;
     width: 65%;
     margin: 2rem auto 0;
-    padding: 1rem;
+    padding: 0.5rem 1rem;
     text-align: center;
     font-weight: bold;
 }
@@ -516,6 +523,11 @@ li>label[for="season"], label[for="season"], #season{
 
 .addRecord .control{
     margin-top: 2rem;
+}
+
+.total{
+    margin-right: 3.5rem;
+    border-right: 0.01rem solid #999;
 }
 
 .total span{
@@ -581,6 +593,30 @@ li>label[for="season"], label[for="season"], #season{
     border-bottom: 0.01rem solid #cdcdcd;
 }
 
+@media screen and (max-width: 1415px){
+    .submenu{
+        min-height: 8rem;
+        padding-bottom: 1rem;
+    }
+    
+    .col{
+        width: 100%;
+        margin: 0 auto 1.5rem;
+        display: block;
+        float: none;
+    }
+    
+    .total{
+        padding: 0 0 1rem;
+        border-right: none;
+        border-bottom: 0.01rem solid #999;
+    }
+    
+    .query{
+        margin-bottom: 1rem;
+    }
+}
+
 @media screen and (max-width: 1230px){
     .dvdRecord{
         width: 45%;
@@ -618,6 +654,10 @@ li>label[for="season"], label[for="season"], #season{
         text-align: center;
     }
     
+    input{
+        text-align: center;
+    }
+    
     .help{
         text-align: center;
     }
@@ -630,9 +670,9 @@ li>label[for="season"], label[for="season"], #season{
     .total{
         display: block;
         width: 100%;
-        margin-bottom: 0.5rem;
+        margin-bottom: 1rem;
         padding-bottom: 0.5rem;
-        border-bottom: 0.01rem solid #333;
+        border-bottom: 0.01rem solid #999;
         float: none;
     }
     
@@ -653,5 +693,27 @@ li>label[for="season"], label[for="season"], #season{
     
     .addRecord label input{
         width: 100%;
+    }
+}
+
+@media screen and (max-width: 690px){
+    .submenu{
+        height: auto;
+        float: left;
+    }
+    
+    .query{
+        float: left;
+    }
+    
+    .query p{
+        display: inline-block;
+        margin-top: 1rem;
+        width: 30%;
+    }
+    
+    .query input.clearBtn{
+        display: inline-block;
+        margin-top: 1rem;
     }
 }

@@ -24,20 +24,20 @@ if (isset($_POST['submit'])) {
     $film =[
       "id"          => $_POST['id'],
       "title"       => $_POST['title'],
-      "image"       => $_POST['image'],
+      "image"       => imgid,
       "director"    => $_POST['director'],
       "starring"    => $_POST['starring'],
       "genre"       => $_POST['genre'],
       "tv"          => $_POST['tv'],
       "season"      => $_POST['season'],
       "releasedate" => $_POST['releasedate'],
-      "date"        => $_POST['date'],
+      "date"        => $_POST['date']
     ];
 
     // create SQL statement
     $sql = "UPDATE `dvds` 
-            SET title = :title, 
-                image = :image, 
+            SET title = :title,
+                image = :image,
                 director = :director, 
                 starring = :starring, 
                 genre = :genre, 
@@ -102,8 +102,18 @@ if (isset($_GET['id'])) {
     
         <h2>Edit DVD</h2>
 
+        <?php 
+        // show confirmation message on successful form submission
+        if (isset($_POST['submit']) && $statement) { ?>
+
+            <p class='alert'>Record successfully updated.</p>
+
+        <?php } ?>
+        
+        <p class="note">Fields marked with an <span class="req">*</span> are required.</p>
+
         <!--form to edit data for each DVD-->
-        <form id="createRecord" method="post">
+        <form id="createRecord" method="post" enctype="multipart/form-data">
 
             <ul class="addRecord">
 
@@ -113,18 +123,22 @@ if (isset($_GET['id'])) {
                 <li class="label">
 <!--                    <label for="id">ID</label>-->
                     <input type="hidden" name="id" id="id" value="<?php echo escape($film['id']); ?>" >
-                </li>
-        
+                </li>        
 
                 <li class="label">
-                    <label for="title">Title</label>
+                    <label for="title">Title<span class="req">*</span></label>
                     <input type="text" name="title" id="title" value="<?php echo escape($film['title']); ?>">
                 </li>
 
                 <li class="label">
                     <label for="image">Image</label>
-                    <input type="image" name="image" id="image" value="<?php echo escape($film['image']); ?>">
-                    <input type="file" name="image" id="imageUpload" value="<?php echo escape($film['image']); ?>">
+                    <?php 
+                    // if record had image attached when added, keep image attached
+                    if(escape($film['image']) !== NULL){ ?>
+                        <input type="image" name="image" id="image" value="<?php echo escape($film['image']); ?>">
+                    <?php }; ?>
+                    
+                    <input type="file" name="imageUpload" id="imageUpload">
                 </li>
 
                 <li class="label">
@@ -144,7 +158,11 @@ if (isset($_GET['id'])) {
 
                 <li class="label">
                     <label for="tv">TV Series</label>
-                    <input type="checkbox" name="tv" id="tv" value="<?php echo escape($film['tv']); ?>">
+                    <?php 
+                    // if record was added as a tv series, keep checkbox checked
+                    if(escape($film['tv']) == "Yes"){ ?>
+                        <input type="checkbox" name="tv" id="tv" value="Yes" checked>
+                    <?php }; ?>
                 </li>
 
                 <li class="label">

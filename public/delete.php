@@ -94,11 +94,12 @@ try {
         <div class="submenu">
             <ul>
                 <li class="col total">
+                    <p class="">Displaying <b>
                     <?php
-
                     // display total number of DVDs showing
-                    printf("<span>Total DVDs in collection:</span> %d\n",$statement->rowCount());
+                    printf($statement->rowCount());
                     ?>
+                    </b> results</p>
                 </li>
 
                 <li class="col query">
@@ -128,16 +129,24 @@ try {
 
             <p class="image">
                 <?php
-                if( $row["image"] !== NULL && 
-                   $row["image"] !== "" ){
+                // if image exists and record is a tv series, add alt tag using title and season
+                if( $row["image"] !== NULL 
+                   && $row["image"] !== "" 
+                   && $row["tv"] == "Yes" ){
                     echo "<img src='uploads/" . 
                         $row["image"] . "' alt='" . 
                         $row['title'] .", season " . 
                         $row['season'] . "'>";
-                }
-                else
-                {
-                    echo "<p class='noImage'>No image available.</p>";
+                // if image exists and record is not a tv series, add alt tag using title only
+                }else if( $row["image"] !== NULL 
+                 && $row["image"] !== "" 
+                 && $row["tv"] !== "Yes" ){
+                    echo "<img src='uploads/" . 
+                        $row["image"] . "' alt='" . 
+                        $row['title'] ."'>";
+                // if image does not exist, display "no image available"
+                }else{
+                    echo "<p class='noImage'>No image available</p>";
                 }
                 ?>
             </p>
@@ -184,12 +193,21 @@ try {
                 if($row["tv"] !== NULL){
                 ?>
                         <h6 class="labelResult">TV Series:</h6>
-                        <?php echo $row['tv']; ?>
+                        <?php echo "Yes"; ?>
                     </p>
 
                     <p class="season">
                         <h6 class="labelResult">Season:</h6>
-                        <?php echo $row['season']; ?>
+                        <?php
+
+                        // if season  was entered by user
+                        if($row["season"] !== 0){
+                            echo "Not specified";
+                        // if season was not entered by user
+                        }else{
+                            echo $row['season'];
+                        }
+                        ?>
                 <?php
                 }
                 ?>

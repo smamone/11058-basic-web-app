@@ -123,6 +123,8 @@ try {
             echo "<p class='alert'>DVD successfully added.</p>";
 
         } ?>
+        
+        <p class="note">Fields marked with an <span class="req">*</span> are required.</p>
 
         <!--form to collect data for each DVD-->
         <form id="createRecord" method="post" enctype="multipart/form-data">

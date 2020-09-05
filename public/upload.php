@@ -54,7 +54,7 @@
 					echo "File could not be deleted.";
                 }
             }
-        if(move_uploaded_file($_FILES["image"]["tmp_name"], $idname)) {
+        if(move_uploaded_file($_FILES["imageUpload"]["tmp_name"], $idname)) {
     //    echo basename( $_FILES["image"]["name"]). " was successfully uploaded.";
         }else{
         echo "Something went wrong. There was an error uploading your file.";
