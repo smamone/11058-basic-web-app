@@ -69,11 +69,13 @@ if (isset($_POST['search']) or isset($_POST['submit'])) {
     <div class="submenu">
         <ul>
             <li class="col total">
-                <?php
             
+                <p class="">Displaying <b>
+                <?php
                 // display total number of DVDs showing
-                printf("<span>Total DVDs in collection:</span> %d\n",$statement->rowCount());
+                printf($statement->rowCount());
                 ?>
+                </b> results</p>
             </li>
             
             <li class="col query">
@@ -82,7 +84,9 @@ if (isset($_POST['search']) or isset($_POST['submit'])) {
                     <input type="submit" class="goBtn" name="search" value="Go">
 <!--                    <i class='fas fa-search'></i>-->
                     <p>OR</p>
-                    <input class="clearBtn" type="submit" name="submit" value="View all">
+                    
+                    <!-- display total number of DVDs in collection -->
+                    <input class="clearBtn" type="submit" name="submit" value="View all <?php echo($count); ?> DVDs">
                 </form>
             </li>            
         </ul>
@@ -160,12 +164,21 @@ if (isset($_POST['search']) or isset($_POST['submit'])) {
             if($row["tv"] !== NULL){
             ?>
                     <h6 class="labelResult">TV Series:</h6>
-                    <?php echo $row['tv']; ?>
+                    <?php echo "Yes"; ?>
                 </p>
 
                 <p class="season">
                     <h6 class="labelResult">Season:</h6>
-                    <?php echo $row['season']; ?>
+                    <?php
+                    
+                    // if season  was entered by user
+                    if($row["season"] !== 0){
+                        echo $row['season'];
+                    // if season was not entered by user
+                    }else{
+                        echo "Not specified";
+                    }
+                    ?>
             <?php
             }
             ?>

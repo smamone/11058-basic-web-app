@@ -124,7 +124,7 @@ if (isset($_GET['id'])) {
                 <li class="label">
                     <label for="image">Image</label>
                     <input type="image" name="image" id="image" value="<?php echo escape($film['image']); ?>">
-                    <input type="file" name="image" id="image" value="<?php echo escape($film['image']); ?>">
+                    <input type="file" name="image" id="imageUpload" value="<?php echo escape($film['image']); ?>">
                 </li>
 
                 <li class="label">
@@ -157,8 +157,8 @@ if (isset($_GET['id'])) {
                     <input type="number" name="releasedate" id="releasedate" value="<?php echo escape($film['releasedate']); ?>">
                 </li>
 
-                <p class="field">
-                    <input class="subBtn button notification is-primary" type="submit" name="submit" value="Save">
+                <p class="field control">
+                    <input class="subBtn" type="submit" name="submit" value="Save">
                     <a class="canBtn" href="update.php">Cancel</a>
                 </p>
 

@@ -169,8 +169,8 @@ try {
                     <input type="number" name="releasedate" id="releasedate">
                 </li>
 
-                <p class="field">
-                    <input class="addBtn button notification is-primary" type="submit" name="submit" value="Add">
+                <p class="field control">
+                    <input class="addBtn" type="submit" name="submit" value="Add">
                     <input type="reset" class="resBtn" value="Reset">
                     <a class="canBtn" href="welcome.php">Cancel</a>
                 </p>

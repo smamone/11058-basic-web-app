@@ -170,7 +170,7 @@ try {
             </p>
 
             <p class="right">
-                <a href='update-work.php?id=<?php echo $row['id']; ?>' class="editBtn button is-link">Edit</a>
+                <a href='update-work.php?id=<?php echo $row['id']; ?>' class="editBtn">Edit</a>
             </p>
         </div>
 

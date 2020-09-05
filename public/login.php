@@ -125,7 +125,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     </p>
                 </div>
 
-                <div class="field">
+                <div class="field control">
                     <input type="submit" class="subBtn button" value="Login">
                 </div>
                 

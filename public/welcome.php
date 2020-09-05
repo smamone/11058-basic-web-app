@@ -15,10 +15,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <div class="container">
 
     <div class="pageHeader">
-        <h2><?php echo htmlspecialchars($_SESSION["username"]); ?>'s DVD tracker</h2>
+        <h2><?php echo htmlspecialchars($_SESSION["username"]); ?>'s account</h2>
     </div>
     <div class="centre">
-        <a href="reset-password.php" class="resBtn notification is-danger">
+        <a href="reset-password.php" class="resBtn">
             <i class="fas fa-wrench"></i> Reset password
         </a>
         <a href="logout.php" class="outBtn">

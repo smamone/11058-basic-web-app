@@ -102,22 +102,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
                 <div class="field <?php echo (!empty($new_password_err)) ? 'has-error' : ''; ?>">
-                    <p class="control icon is-left has-icons-left icon is-right has-icons-right">
+                    <p class="control">
                         <label>New password</label>
                         <input type="password" name="new_password" placeholder="New password" class="field" value="<?php echo $new_password; ?>">
                         <span class="help"><?php echo $new_password_err; ?></span>
                     </p>
                 </div>
                 <div class="field <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
-                    <p class="control icon is-left has-icons-left icon is-right has-icons-right">
+                    <p class="control">
                         <label>Confirm password</label>
                         <input type="password" name="confirm_password" placeholder="Confirm password" class="field">
                         <span class="help"><?php echo $confirm_password_err; ?></span>
                     </p>
                 </div>
                 <div class="field">
-                    <p class="control icon is-left has-icons-left icon is-right has-icons-right">
-                        <input type="submit" class="subBtn button is-link" value="Submit">
+                    <p class="control">
+                        <input type="submit" class="subBtn" value="Submit">
                         <a class="canBtn" href="welcome.php">Cancel</a>
                     </p>
                 </div>

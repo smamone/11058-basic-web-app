@@ -37,10 +37,14 @@ body{
 .centre{
     width: 33.5rem;
     margin: 0 auto 5rem;
-    padding: 0.75rem 0 0.25rem;
+    padding: 0.75rem 0 1.65rem;
     text-align: center;
     background-color: #eaeaea;
-    border: 0.05rem solid #333;
+    border: 0.05rem solid #999;
+}
+
+hr{
+    color: #999;
 }
 
 header{
@@ -86,6 +90,8 @@ h2{
     font-size: 3.5rem;
     font-weight: normal;
     margin-top: 2rem;
+    margin-bottom: 0;
+    border-bottom: 0.01rem solid #999;
 }
 
 h3{
@@ -249,6 +255,10 @@ label span .req{
     background-color: none;
 }
 
+#imageUpload{
+    margin-left: 7rem;
+    border: none;
+}
 
 .btn,
 .addBtn,
@@ -264,6 +274,7 @@ label span .req{
     font-size: 1rem;
     font-weight: bold;
     text-align: center;
+    padding: 1.3rem;
     color: #FFF;
     border: none;
     border-radius: 0.5rem;
@@ -272,7 +283,7 @@ label span .req{
 
 input .btn, .btn{
     background-color: #3A3C54;
-    padding: 0.5rem 1.25rem;
+    padding: 0.35rem 1.25rem;
     margin: 0 1.25rem;
 }
 
@@ -281,19 +292,35 @@ input .btn, .btn{
 }
 
 .addBtn{
-    padding: 0.75rem 1.5rem;
+    background-color: #48c9b0;
     margin: 0.75rem 0 0;
+    padding: 1.05rem 1.7rem;
     line-height: 0;
 }
 
-.addBtn a:hover{    
-    background-color: #007777;
+.addBtn:hover{    
+    background-color: #17a589;
 }
 
-.editBtn, .subBtn, .outBtn{
-    padding: 0.5rem 1.25rem;
+.editBtn{
     margin: 0.75rem 0 0;
+    padding: 1.1rem 1.4rem;
     background-color: #3273dc;
+    line-height: 0;
+}
+
+.subBtn{
+    margin: 0.75rem 1rem 0;
+    padding: 1.1rem 1.4rem;
+    background-color: #3273dc;
+    line-height: 0;
+}
+
+.outBtn{
+    margin: 0.75rem 1rem 0;
+    padding: 0.75rem 1.4rem;
+    background-color: #3273dc;
+    line-height: 0;
 }
 
 .editBtn:hover, .subBtn:hover, .outBtn:hover{    
@@ -305,23 +332,29 @@ input .btn, .btn{
     text-align: right;
 }
 
-.delBtn, .resBtn, .canBtn{
-    padding: 0.75rem 1.5rem;
+.delBtn{
+    padding: 0.35rem 1.1rem;
     margin: 0.75rem 0 0;
     background-color: #f14668;
 }
 
-.delBtn:hover, .resBtn:hover, .canBtn:hover{
-    background-color: #d11141;
-    color: #FFF;
-}
-
 .canBtn{
-    padding: 0.5rem 1.25rem;
+    padding: 0.3rem 1.25rem;
     margin: 0.75rem 0 0;
     color: #333;
     background-color: #f2f2f2;
     border: 0.03rem solid #ccc;
+}
+
+.resBtn{
+    padding: 0.5rem 1.4rem;
+    margin: 0.5rem 1rem 0;
+    background-color: #f14668;
+}
+
+.delBtn:hover, .resBtn:hover{
+    background-color: #d11141;
+    color: #FFF;
 }
 
 .canBtn:hover{
@@ -330,10 +363,10 @@ input .btn, .btn{
 }
 
 .viewBtn{
-    width: 10rem;
-    padding: 1rem;
     margin: 0.75rem 0 0;
+    padding: 1.1rem 1.4rem;
     background-color: #3A3C54;
+    line-height: 0;
 }
 
 .viewBtn:hover{
@@ -368,7 +401,7 @@ input .btn, .btn{
 }
 
 .title{
-    
+    font-size: 1.8rem;
 }
 
 .container .dvdRecord .image image{
@@ -436,7 +469,6 @@ li>label[for="season"], label[for="season"], #season{
     border-bottom: 0.1rem solid #536878;
     padding: 2rem;
     margin: 1rem;
-/*    border-radius: 1rem;*/
     width: 30%;
 }
 
@@ -478,7 +510,16 @@ li>label[for="season"], label[for="season"], #season{
     float: left;
 }
 
-.total{
+.control{
+    margin-bottom: 2rem;
+}
+
+.addRecord .control{
+    margin-top: 2rem;
+}
+
+.total span{
+    font-weight: bold;
 }
 
 .query{
