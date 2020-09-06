@@ -80,12 +80,13 @@ if (isset($_POST['search']) or isset($_POST['submit'])) {
             <li class="col query">
                 <form method="post">
                     <input type="search" id="search" name="query" placeholder="Search for a DVD">
-                    <input type="submit" class="goBtn" name="search" value="Go">
-<!--                    <i class='fas fa-search'></i>-->
+                    <button type="submit" class="goBtn" name="search">
+                        <i class="fas fa-search"></i>
+                    </button>
                     <p>OR</p>
                     
                     <!-- display total number of DVDs in collection -->
-                    <input class="clearBtn" type="submit" name="submit" value="View all <?php echo($count); ?> DVDs">
+                    <input class="clearBtn" type="submit" name="submit" value="View all">
                 </form>
             </li>            
         </ul>
@@ -95,7 +96,24 @@ if (isset($_POST['search']) or isset($_POST['submit'])) {
     foreach($result as $row) {
     ?>
 
-    <div class="dvdRecord">
+    <div class="dvdRecord"> 
+<!--
+         style="
+            <?php 
+            // if record image exists, use it as background image for dvdRecord
+            //if($row["image"] !== NULL 
+            //   && $row["image"] !== ""){
+            //    echo 
+            //        "background-color: #EEE;
+            //        background-repeat: none; 
+            //        background-size: cover;
+            //        background-position: top;
+            //        background-image: url('uploads/"
+            //        . $row["image"];
+            //        "');"
+            ;?>
+        ');">
+-->
         
         <p class="id">
         <?php echo $row["id"]; ?>

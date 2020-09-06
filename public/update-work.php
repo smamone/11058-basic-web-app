@@ -24,7 +24,8 @@ if (isset($_POST['submit'])) {
     $film =[
       "id"          => $_POST['id'],
       "title"       => $_POST['title'],
-      "image"       => imgid,
+      //"image"       => $_POST['image'],
+      "image"       => $imgid,
       "director"    => $_POST['director'],
       "starring"    => $_POST['starring'],
       "genre"       => $_POST['genre'],
@@ -101,6 +102,8 @@ if (isset($_GET['id'])) {
     <div class="content">
     
         <h2>Edit DVD</h2>
+        
+        <p class="note">Fields marked with an <span class="req">*</span> are required.</p>
 
         <?php 
         // show confirmation message on successful form submission
@@ -109,8 +112,6 @@ if (isset($_GET['id'])) {
             <p class='alert'>Record successfully updated.</p>
 
         <?php } ?>
-        
-        <p class="note">Fields marked with an <span class="req">*</span> are required.</p>
 
         <!--form to edit data for each DVD-->
         <form id="createRecord" method="post" enctype="multipart/form-data">
@@ -162,6 +163,9 @@ if (isset($_GET['id'])) {
                     // if record was added as a tv series, keep checkbox checked
                     if(escape($film['tv']) == "Yes"){ ?>
                         <input type="checkbox" name="tv" id="tv" value="Yes" checked>
+                    <?php 
+                    }else{ ?>
+                        <input type="checkbox" name="tv" id="tv" value="Yes">
                     <?php }; ?>
                 </li>
 

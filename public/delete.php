@@ -105,8 +105,9 @@ try {
                 <li class="col query">
                     <form method="post">
                         <input type="search" id="search" name="query" placeholder="Search for a DVD">
-                        <input type="submit" class="goBtn" name="search" value="Go">
-    <!--                    <i class='fas fa-search'></i>-->
+                        <button type="submit" class="goBtn" name="search">
+                            <i class="fas fa-search"></i>
+                        </button>
                         <p>OR</p>
                         <input class="clearBtn" type="submit" name="submit" value="View all">
                     </form>
