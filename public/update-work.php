@@ -109,7 +109,7 @@ if (isset($_GET['id'])) {
         // show confirmation message on successful form submission
         if (isset($_POST['submit']) && $statement) { ?>
 
-            <p class='alert'>Record successfully updated.</p>
+            <p class='alert'>Record successfully updated.<br><a class="return" href="read.php">Return to collection.</a></p>
 
         <?php } ?>
 

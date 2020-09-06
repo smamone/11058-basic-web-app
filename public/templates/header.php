@@ -19,28 +19,33 @@
     <a name="top"></a>
     
     <section id="header" class="header">
-        <h1><a href="index.php">My DVD Tracker</a></h1>
+        
+        <div class="navigation">
+        
+            <h1><a href="index.php">My DVD Tracker</a></h1>
 
-        <ul class="nav">
-            <a href="create.php">
-                <li class="btn">
-                        <i class="fas fa-plus"></i>&nbsp; Add
-                </li>
-            </a>
-            <a href="read.php">
-                <li class="btn">
-                        <i class="fas fa-search"></i>&nbsp; Find
-                </li>
-            </a>
-            <a href="update.php">
-                <li class="btn">
-                        <i class="fas fa-pen"></i>&nbsp; Edit
-                </li>
-            </a>
-            <a href="delete.php">
-                <li class="btn">
-                        <i class="fas fa-times"></i>&nbsp; Delete
-                </li>
-            </a>
-        </ul>
+            <ul class="navList">
+                <a href="create.php">
+                    <li class="btn">
+                            <i class="fas fa-plus"></i>&nbsp; Add
+                    </li>
+                </a>
+                <a href="read.php">
+                    <li class="btn">
+                            <i class="fas fa-search"></i>&nbsp; Find
+                    </li>
+                </a>
+                <a href="update.php">
+                    <li class="btn">
+                            <i class="fas fa-pen"></i>&nbsp; Edit
+                    </li>
+                </a>
+                <a href="delete.php">
+                    <li class="btn">
+                            <i class="fas fa-times"></i>&nbsp; Delete
+                    </li>
+                </a>
+            </ul>
+            
+        </div>
     </section>

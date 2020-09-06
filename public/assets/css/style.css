@@ -20,6 +20,17 @@ body{
     padding: 0 1.5rem 3rem;
 }
 
+.navigation{
+    width: 82rem;
+    margin: 0 auto;
+    text-align: center;
+    padding-bottom: 1.5rem;
+}
+
+.navList{
+    float: right;
+}
+
 .container{
     width: 90%;
     min-height: 100%;
@@ -64,10 +75,11 @@ footer > p{
 
 h1{
     font-family: 'BebasNeue', Arial;
-    font-size: 4.5rem;
-    line-height: 6rem;
-    text-align: center;
-    margin-bottom: 1rem;
+    font-size: 3.4rem;
+    line-height: 3.1rem;
+    text-align: left;
+/*    margin-bottom: 1rem;*/
+    float: left;
 }
 
 h1 a:hover{
@@ -107,13 +119,14 @@ p{
     font-size: 1rem;
 }
 
-a{
-    text-decoration: none;
+.return{
+    color: #333;
+    background-color: none;
+    text-decoration: underline;
 }
 
-.nav{
-    margin: 0 auto;
-    text-align: center;
+.return:hover{
+    color: #FFF;
 }
 
 li a{    
@@ -261,8 +274,7 @@ input .btn{
     padding: 0.3rem 1.25rem;
     margin: 0.75rem 0 0;
     color: #333;
-    background-color: #f2f2f2;
-    border: 0.03rem solid #ccc;
+    background-color: #E0E0E0;
 }
 
 .goBtn{
@@ -360,7 +372,7 @@ input{
 }
 
 input:focus{
-    background-color: #e1e6ea;
+    background-color: #c4ede4;
 }
 
 .note{
@@ -405,6 +417,14 @@ input:focus{
 
 .checkbox{
     text-align: left;
+    font-size: 0.9rem;
+    width: 1.15rem;
+    height: 1.15rem;
+}
+
+input#tv.checkbox{
+    vertical-align: bottom;
+    margin: 0.5rem 0;
 }
 
 #createRecord{
@@ -413,6 +433,7 @@ input:focus{
 
 .addRecord label{
     width: 7rem;
+    text-align: right;
 }
 
 .id{
@@ -575,20 +596,61 @@ input:focus{
     }
 }
 
+@media screen and (max-width: 1550px){
+    .navigation{
+        width: 80%;;
+    }
+}
+
 @media screen and (max-width: 1230px){
+    .navigation{
+        width: 58rem;
+    }
+    
     .dvdRecord{
         width: 45%;
     }
 }
 
-@media screen and (max-width: 830px){
-    .nav{
-        width: 80%;
+@media screen and (max-width: 1150px){
+    .navigation{
+        width: 51rem;
+        margin-bottom: 0;
+        padding-bottom: 0;
     }
     
-    .nav .btn{
-        display: block;
-        margin: 1rem 0;
+    h1{
+        width: 100%;
+        text-align: center;
+        margin-bottom: 1rem;
+        float: none;
+    }
+    
+    .navList{
+        width: 80%;
+        margin: 0 auto;
+        float: none;
+    }
+}
+
+@media screen and (max-width: 830px){
+    .navigation{
+        width: 100%;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+    
+    h1{
+        width: 100%;
+        text-align: center;
+        margin-bottom: 1rem;
+        float: none;
+    }
+    
+    .navList{
+        width: 80%;
+        margin: 0 auto;
+        float: none;
     }
 
     #heading{
@@ -655,7 +717,59 @@ input:focus{
     }
 }
 
-@media screen and (max-width: 690px){
+@media screen and (max-width: 730px){
+    .navigation{
+        width: 100%;
+        height: 16rem;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+    
+    .navList{
+        width: 80%;
+        margin: 0 auto;
+        float: none;
+    }
+    
+    .navList .btn{
+        display: block;
+        margin: 1rem 0;
+    }
+    
+    h1{
+        width: 100%;
+        text-align: center;
+        font-size: 3rem;
+        float: none;
+    }
+}
+
+@media screen and (max-width: 620px){
+    .navigation{
+        width: 100%;
+        height: 16rem;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+    
+    .navList{
+        width: 80%;
+        margin: 0 auto;
+        float: none;
+    }
+    
+    .navList .btn{
+        display: block;
+        margin: 1rem 0;
+    }
+    
+    h1{
+        width: 100%;
+        text-align: center;
+        font-size: 3rem;
+        float: none;
+    }
+    
     .submenu{
         height: auto;
         float: left;
@@ -669,7 +783,7 @@ input:focus{
     .query p{
         display: inline-block;
         margin-top: 1rem;
-        width: 30%;
+        width: 35%;
     }
     
     .query input.clearBtn{

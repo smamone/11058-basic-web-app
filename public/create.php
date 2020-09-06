@@ -157,7 +157,7 @@ try {
                 </li>
 
                 <li class="label">
-                    <label for="tv" class="checkbox">TV Series</label>
+                    <label for="tv" class="label checkbox">TV Series</label>
                     <input class="checkbox" type="checkbox" name="tv" id="tv" value="Yes">
                 </li>
                 
