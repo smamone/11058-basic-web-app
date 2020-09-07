@@ -1,8 +1,7 @@
 <?php
 
-//session_start();
 // this code will only execute after the submit button is clicked in the search field
-if (isset($_POST['search']) or isset($_POST['submit'])) {
+if(isset($_POST['search']) or isset($_POST['submit'])){
 	
     // include the config file that we created before
     require "../config.php";
@@ -11,14 +10,12 @@ if (isset($_POST['search']) or isset($_POST['submit'])) {
 	require "common.php";
     
     // this is called a try/catch statement 
-	try {
+	try{
         // FIRST: Connect to the database
         $connection = new PDO($dsn, $username, $password, $options);
 		
-        // SECOND: Create the SQL 
-//        $sql = "SELECT * FROM dvds"; // dvds table
+        // SECOND: Create the SQL
         if(isset($_POST['search'])){ // search through results
-//			$userid = $_SESSION['id'];
 			$query = escape($_POST['query']);
             
             // select any results that match any part of the title, director, starring, genre or releasedate fields
@@ -30,6 +27,10 @@ if (isset($_POST['search']) or isset($_POST['submit'])) {
 			starring LIKE '%" . $query . "%'
 				OR
 			genre LIKE '%" . $query . "%'
+				OR
+			tv LIKE '%" . $query . "%'
+				OR
+			season LIKE '%" . $query . "%'
 				OR
 			releasedate LIKE '%" . $query . "%'
 				";
@@ -45,22 +46,21 @@ if (isset($_POST['search']) or isset($_POST['submit'])) {
         // FOURTH: Put it into a $result object that we can access in the page
         $result = $statement->fetchAll();
 
-	} catch(PDOException $error) {
+	}catch(PDOException $error){
         // if there is an error, tell us what it is
 		echo "<p>" . $sql . "<br>" . $error->getMessage() . "</p>";
-	}	
+    }
 }
-?>
 
-<?php include "templates/header.php"; ?>
+    include "templates/header.php"; ?>
 
 <section class="section">
 <div class="container">
 
 <?php  
-    if (isset($_POST['search']) or isset($_POST['submit'])) {
+    if(isset($_POST['search']) or isset($_POST['submit'])){
         // if there are some results
-        if ($result && $statement->rowCount() > 0) { ?>
+        if($result && $statement->rowCount() > 0){ ?>
     
     <div id="heading">
         <h2>DVDs in my collection</h2>
@@ -84,15 +84,13 @@ if (isset($_POST['search']) or isset($_POST['submit'])) {
                         <i class="fas fa-search"></i>
                     </button>
                     <p>OR</p>
-                    
-                    <!-- display total number of DVDs in collection -->
                     <input class="clearBtn" type="submit" name="submit" value="View all">
                 </form>
-            </li>            
+            </li>
         </ul>
     </div>
 
-    <?php // This is a loop, which will loop through each result in the array
+    <?php // loop through each result in the array and output as html
     foreach($result as $row) {
     ?>
 
@@ -123,10 +121,19 @@ if (isset($_POST['search']) or isset($_POST['submit'])) {
         <?php echo $row['title']; ?>
         </h4>
 
+        <p class="tv">
+            <?php
+            // if tv series is not NULL, display tv tag
+            if($row["tv"] !== NULL){
+            ?>
+                <p class="tvTag">TV</p>
+            <?php } ?>
+        </p>
+
         <p class="image">
             <?php
             // if image exists and record is a tv series, add alt tag using title and season
-            if( $row["image"] !== NULL 
+            if($row["image"] !== NULL 
                && $row["image"] !== "" 
                && $row["tv"] == "Yes" ){
                 echo "<img src='uploads/" . 
@@ -134,7 +141,7 @@ if (isset($_POST['search']) or isset($_POST['submit'])) {
                     $row['title'] .", season " . 
                     $row['season'] . "'>";
             // if image exists and record is not a tv series, add alt tag using title only
-            }else if( $row["image"] !== NULL 
+            }else if($row["image"] !== NULL 
              && $row["image"] !== "" 
              && $row["tv"] !== "Yes" ){
                 echo "<img src='uploads/" . 
@@ -143,8 +150,7 @@ if (isset($_POST['search']) or isset($_POST['submit'])) {
             // if image does not exist, display "no image available"
             }else{
                 echo "<p class='noImage'>No image available</p>";
-            }
-            ?>
+            } ?>
         </p>
 
         <p class="director">
@@ -153,10 +159,8 @@ if (isset($_POST['search']) or isset($_POST['submit'])) {
             if($row["director"] !== ""){
             ?>
                 <h6 class="labelResult">Director:</h6>
-                <?php echo $row['director']; ?>
-            <?php
-            }
-            ?>
+                <?php echo $row['director']; 
+            } ?>
         </p>
 
         <p class="starring">
@@ -165,10 +169,8 @@ if (isset($_POST['search']) or isset($_POST['submit'])) {
             if($row["starring"] !== ""){
             ?>
                 <h6 class="labelResult">Starring:</h6>
-                <?php echo $row['starring']; ?>
-            <?php
-            }
-            ?>
+                <?php echo $row['starring'];
+            } ?>
         </p>
 
         <p class="genre">
@@ -177,36 +179,25 @@ if (isset($_POST['search']) or isset($_POST['submit'])) {
             if($row["genre"] !== ""){
             ?>
                 <h6 class="labelResult">Genre:</h6>
-                <?php echo $row['genre']; ?>
-            <?php
-            }
-            ?>
+                <?php echo $row['genre'];
+            } ?>
         </p>
 
-        <p class="tv">
-            <?php
-            // if tv series is not NULL, display tv and season info
-            if($row["tv"] !== NULL){
-            ?>
-                    <h6 class="labelResult">TV Series:</h6>
-                    <?php echo "Yes"; ?>
-                </p>
-
-                <p class="season">
-                    <h6 class="labelResult">Season:</h6>
-                    <?php
-                    // if season was not entered by user
-                    if($row["season"] == 0){
-                        echo "Not specified";
-                    // if season was entered by user
-                    }else{
-                        echo $row['season'];
-                    }
-                    ?>
-            <?php
-            }
-            ?>
-        </p>
+        <?php
+        // if tv series is not NULL, display season info
+        if($row["tv"] !== NULL){
+        ?>
+            <p class="season">
+                <h6 class="labelResult">Season:</h6>
+                <?php
+                // if season was not entered by user
+                if($row["season"] == 0){
+                    echo "Not specified";
+                // if season was entered by user
+                }else{
+                    echo $row['season'];
+                }
+        } ?>
 
         <p class="release">
             <?php
@@ -214,10 +205,8 @@ if (isset($_POST['search']) or isset($_POST['submit'])) {
             if($row["releasedate"] !== "0000"){
             ?>
                 <h6 class="labelResult">Release date:</h6>
-                <?php echo $row['releasedate']; ?>
-            <?php
-            }
-            ?>
+                <?php echo $row['releasedate'];
+            } ?>
         </p>
     </div>
 
@@ -228,15 +217,10 @@ if (isset($_POST['search']) or isset($_POST['submit'])) {
             <br>
             Please try a different search term.</p>";
         }else{
-            echo "<p class='noResult'>There are currently no DVDs in your collection.<br>
-            To add to your database, use the Add button above.</p>";
+            echo "<p class='noResult'><b>There are currently no DVDs in your collection.</b><br>
+            To add to your database, use the ADD button above.</p>";
         }
-    }
-    ?>
-
-<?php   // this will output all the data from the array
-        // echo '<pre>'; var_dump($row);
-?>
+    } ?>
 
 <?php }; // close the foreach 
 

@@ -84,7 +84,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 // Registration successful. Destroy the session, and redirect to login page
                 session_destroy();
                     
-                // Redirect to log in page after 3 seconds
+                // Redirect to log in page after 5 seconds
                 header("refresh: 5; url=login.php");
                 exit();
                 
@@ -120,7 +120,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <hr>
 		
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-
                 <div class="field <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
                     <p class="control has-icons-left has-icons-right">
                         <label>
@@ -163,7 +162,5 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </div>
 		
     </div>
-</body>
-</html>
 
 <?php include "templates/footer.php"; ?>

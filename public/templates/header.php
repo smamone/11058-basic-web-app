@@ -4,6 +4,7 @@
 <head>
     <title>My DVD Collection</title>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
     <link rel="icon" href="assests/favicon.png" type="image/png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
@@ -23,26 +24,26 @@
         <div class="navigation">
         
             <h1><a href="index.php">My DVD Tracker</a></h1>
-
+            
             <ul class="navList">
                 <a href="create.php">
                     <li class="btn">
-                            <i class="fas fa-plus"></i>&nbsp; Add
+                        <i class="fas fa-plus"></i>&nbsp; Add
                     </li>
                 </a>
                 <a href="read.php">
                     <li class="btn">
-                            <i class="fas fa-search"></i>&nbsp; Find
+                        <i class="fas fa-search"></i>&nbsp; Find
                     </li>
                 </a>
                 <a href="update.php">
                     <li class="btn">
-                            <i class="fas fa-pen"></i>&nbsp; Edit
+                        <i class="fas fa-pen"></i>&nbsp; Edit
                     </li>
                 </a>
                 <a href="delete.php">
                     <li class="btn">
-                            <i class="fas fa-times"></i>&nbsp; Delete
+                        <i class="fas fa-times"></i>&nbsp; Delete
                     </li>
                 </a>
             </ul>

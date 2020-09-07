@@ -7,10 +7,10 @@ require "../config.php";
 require "common.php";
 
 // This code will only run if the delete button is clicked
-if (isset($_GET["id"])) {
+if (isset($_GET["id"])){
 
-    // this is called a try/catch statement 
-    try {
+    // try/catch statement 
+    try{
 
         // define database connection
         $connection = new PDO($dsn, $username, $password, $options);
@@ -35,91 +35,26 @@ if (isset($_GET["id"])) {
         // update confirmation
 //        $success = echo "<p class='alert'>DVD successfully deleted.</p>";
 
-
-    } catch(PDOException $error) {
+    }catch(PDOException $error){
         // if there is an error, tell us what it is
         echo "<p>" . $sql . "<br>" . $error->getMessage() . "</p>";
     }
 };
 
 // This code runs on page load
-// this is called a try/catch statement
-try {
-    // FIRST: Connect to the database
-    $connection = new PDO($dsn, $username, $password, $options);
+include "templates/search.php";
+include "templates/header.php";
+include "templates/submenu.php";
+            
+// if there are some results
+if($result && $statement->rowCount() > 0){
 
-    // SECOND: Create the SQL
-    if(isset($_POST['search'])){ // search through results
-        $query = escape($_POST['query']);
-
-        // select any results that match any part of the title, director, starring, genre or releasedate fields
-        $sql = "SELECT DISTINCT * FROM dvds WHERE 
-        title LIKE '%" . $query . "%'
-            OR 
-        director LIKE '%" . $query . "%'
-            OR
-        starring LIKE '%" . $query . "%'
-            OR
-        genre LIKE '%" . $query . "%'
-            OR
-        releasedate LIKE '%" . $query . "%'
-            ";
-    }else{
-        // otherwise show all results
-        $sql = "SELECT * FROM dvds";
-    }
-
-    // THIRD: Prepare the SQL
-    $statement = $connection->prepare($sql);
-    $statement->execute();
-
-    // FOURTH: Put it into a $result object that we can access in the page
-    $result = $statement->fetchAll();
-
-} catch(PDOException $error) {
-    // if there is an error, tell us what it is
-    echo "<p>" . $sql . "<br>" . $error->getMessage() . "</p>";
-}
-?>
-
-<?php include "templates/header.php"; ?>
-
-<section class="section">
-    <div class="container">
-
-        <div id="heading">
-            <h2>DVDs in my collection</h2>
-        </div>
-
-        <div class="submenu">
-            <ul>
-                <li class="col total">
-                    <p class="">Displaying <b>
-                    <?php
-                    // display total number of DVDs showing
-                    printf($statement->rowCount());
-                    ?>
-                    </b> results</p>
-                </li>
-
-                <li class="col query">
-                    <form method="post">
-                        <input type="search" id="search" name="query" placeholder="Search for a DVD">
-                        <button type="submit" class="goBtn" name="search">
-                            <i class="fas fa-search"></i>
-                        </button>
-                        <p>OR</p>
-                        <input class="clearBtn" type="submit" name="submit" value="View all">
-                    </form>
-                </li>            
-            </ul>
-        </div>
-
-        <?php // This is a loop, which will loop through each result in the array
-        foreach($result as $row) {
-        ?>
+    // Loop through each result in the array and display the following html
+    foreach($result as $row){
+    ?>
 
         <div class="dvdRecord">
+
             <p class="id">
                 <?php echo $row["id"]; ?>
             </p>
@@ -127,6 +62,15 @@ try {
             <h4 class="title">
                 <?php echo $row['title']; ?>
             </h4>
+
+            <p class="tv">
+                <?php
+                // if tv series is not NULL, display tv tag
+                if($row["tv"] !== NULL){
+                ?>
+                    <p class="tvTag">TV</p>
+                <?php } ?>
+            </p>
 
             <p class="image">
                 <?php
@@ -145,7 +89,7 @@ try {
                     echo "<img src='uploads/" . 
                         $row["image"] . "' alt='" . 
                         $row['title'] ."'>";
-                // if image does not exist, display "no image available"
+                // if image does not exist, display "No image available"
                 }else{
                     echo "<p class='noImage'>No image available</p>";
                 }
@@ -160,8 +104,7 @@ try {
                     <h6 class="labelResult">Director:</h6>
                     <?php echo $row['director']; ?>
                 <?php
-                }
-                ?>
+                } ?>
             </p>
 
             <p class="starring">
@@ -172,8 +115,7 @@ try {
                     <h6 class="labelResult">Starring:</h6>
                     <?php echo $row['starring']; ?>
                 <?php
-                }
-                ?>
+                } ?>
             </p>
 
             <p class="genre">
@@ -184,35 +126,24 @@ try {
                     <h6 class="labelResult">Genre:</h6>
                     <?php echo $row['genre']; ?>
                 <?php
-                }
-                ?>
+                } ?>
             </p>
 
-            <p class="tv">
-                <?php
-                // if tv series is not NULL, display tv and season info
-                if($row["tv"] !== NULL){
-                ?>
-                        <h6 class="labelResult">TV Series:</h6>
-                        <?php echo "Yes"; ?>
-                    </p>
-
-                    <p class="season">
-                        <h6 class="labelResult">Season:</h6>
-                        <?php
-
-                        // if season  was entered by user
-                        if($row["season"] !== 0){
-                            echo "Not specified";
-                        // if season was not entered by user
-                        }else{
-                            echo $row['season'];
-                        }
-                        ?>
-                <?php
-                }
-                ?>
-            </p>
+            <?php
+            // if tv series is not NULL, display season info
+            if($row["tv"] !== NULL){
+            ?>
+                <p class="season">
+                    <h6 class="labelResult">Season:</h6>
+                    <?php
+                    // if season was not entered by user
+                    if($row["season"] == 0){
+                        echo "Not specified";
+                    // if season was entered by user
+                    }else{
+                        echo $row['season'];
+                    }
+            } ?>
 
             <p class="release">
                 <?php
@@ -220,10 +151,8 @@ try {
                 if($row["releasedate"] !== "0000"){
                 ?>
                     <h6 class="labelResult">Release date:</h6>
-                    <?php echo $row['releasedate']; ?>
-                <?php
-                }
-                ?>
+                    <?php echo $row['releasedate'];
+                } ?>
             </p>
 
             <!-- confirm user wants to delete -->
@@ -232,23 +161,18 @@ try {
             </p>
         </div>
 
-        <?php   // this will output all the data from the array
-                // echo '<pre>'; var_dump($row); 
-        ?>
+        <?php }; //close the foreach
+        }else{
+            if(isset($_POST['search'])){
+                echo "<p class='noResult'>No results matched your search of '<span>" . $query . "</span>'.
+                <br>
+                Please try a different search term.</p>";
+            }else{
+                echo "<p class='noResult'><b>There are currently no DVDs in your collection.</b><br>
+                To add to your database, use the ADD button above.</p>";
+            }
+        }
 
-        <?php
-        }; // close the foreach
-        ?>
-
-        <div class="row">
-            <!-- scroll to top button -->
-            <a class="top" href="#top">
-                <i class="fas fa-chevron-circle-up"></i>
-            </a>
-        </div>
-
-    </div>
-
-</section>
-
-<?php include "templates/footer.php"; ?>
+include "templates/scroll-top.php";
+include "templates/footer.php";
+?>

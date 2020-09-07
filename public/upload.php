@@ -15,7 +15,7 @@
 
     // check file is an image
     $check = getimagesize($_FILES["image"]["tmp_name"]);
-    if($check !== false) {
+    if($check !== false){
         $uploadOk = 1;
     }else{
         echo "File is not an image. Please select a different file.";
@@ -29,32 +29,32 @@
 //    }
 
     // if the file size is over 500KB
-    if($_FILES["image"]["size"] > 500000) {
+    if($_FILES["image"]["size"] > 500000){
         echo "Your file is too large. Please choose a smaller file.";
         $uploadOk = 0;
     }
 
     // if image does not match the following formats and is not empty**
     if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-    && $imageFileType != "gif") {
+    && $imageFileType != "gif"){
         echo "Only JPG, JPEG, PNG and GIF files are accepted. Please choose another file type.";
         $uploadOk = 0;
     }
 
     // check if $uploadOk is set to 0 by an error and field is not empty**
-    if($uploadOk == 0) {
+    if($uploadOk == 0){
         echo "Something went wrong. Your file was not uploaded.";
         
     // if everything is ok, try to upload file
     }else{
-        if (file_exists($idname)) {
+        if(file_exists($idname)){
             
 				// "unlink" (delete) existing image file
                 if(!unlink($idname)){
 					echo "File could not be deleted.";
                 }
             }
-        if(move_uploaded_file($_FILES["imageUpload"]["tmp_name"], $idname)) {
+        if(move_uploaded_file($_FILES["image"]["tmp_name"], $idname)){
     //    echo basename( $_FILES["image"]["name"]). " was successfully uploaded.";
         }else{
         echo "Something went wrong. There was an error uploading your file.";

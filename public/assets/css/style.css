@@ -1,3 +1,5 @@
+/* CSS */
+
 html{
     height: 100%;
     overflow: hidden;
@@ -60,13 +62,14 @@ hr{
 
 footer{
     width: 100%;
-    background-color: #333;
+    background-color: #3A3C54;
     color: #FFF;
     text-align: center;
     margin-top: auto;
     position: relative;
     bottom: 0;
     left: 0;
+    float: left;
 }
 
 footer > p{
@@ -78,7 +81,7 @@ h1{
     font-size: 3.4rem;
     line-height: 3.1rem;
     text-align: left;
-/*    margin-bottom: 1rem;*/
+    color: #3A3C54;
     float: left;
 }
 
@@ -87,14 +90,14 @@ h1 a:hover{
 }
 
 h1 a:visited{
-    color: #333;
+    color: #3A3C54;
 }
 
 h2{
     font-family: 'BebasNeue', Arial;
-    font-size: 3.5rem;
+    font-size: 3.2rem;
     font-weight: normal;
-    line-height: 4rem;
+    line-height: 3.6rem;
     text-align: center;
 }
 
@@ -103,8 +106,9 @@ h2{
 }
 
 .content h2{
-    font-size: 3.5rem;
+    font-size: 3rem;
     font-weight: normal;
+    color: #3A3C54;
     margin-top: 2rem;
     margin-bottom: 0;
     border-bottom: 0.01rem solid #999;
@@ -142,9 +146,8 @@ li a:hover{
     width: 100%;
     padding: 2rem 0 2.5rem;
     background-color: #48c9b0;
-    z-index: 5;
-/*    position: fixed;*/
     top: 0;
+    box-shadow: 0 0.35rem 1rem #333;
 }
 
 .customNav{
@@ -158,13 +161,13 @@ li a:hover{
 }
 
 #heading{
-    width: 33rem;
+    width: 98%;
     margin: 0 auto 2.5rem;
     padding: 1rem 0 0;
     color: #FFF;
     background-color: #536878;
     border-radius: 0 0 0.75rem 0.75rem;
-    z-index: 1;
+    box-shadow: 0 0.35rem 1rem #333 inset;
 }
 
 #heading h2{
@@ -188,11 +191,17 @@ li a:hover{
     float: right;
 }
 
+
+/*** BUTTONS ***/
 .formBtn{
     width: 50%;
     margin: 0 auto;
     padding: 3rem 1rem;
     display: inline-block;
+}
+
+.navList .btn:last-child{
+    margin-right: 0;
 }
 
 .btn,
@@ -214,6 +223,7 @@ li a:hover{
     border: none;
     border-radius: 0.5rem;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .btn,
@@ -307,6 +317,7 @@ input .btn{
     cursor: pointer;
 }
 
+/* button hover states */
 .btn:hover{
     background-color: #FFF;
     color: #333;
@@ -334,10 +345,21 @@ input .btn{
     background-color: #48c9b0;
 }
 
+
+/*** FORMS ***/
 form{
     margin: 0 auto;
     padding: 1rem 3rem 3rem;
     background: #FFF 0.5;
+}
+
+#createRecord{
+    margin: 0 auto;
+}
+
+.addRecord label{
+    width: 7rem;
+    text-align: right;
 }
 
 label{
@@ -427,22 +449,18 @@ input#tv.checkbox{
     margin: 0.5rem 0;
 }
 
-#createRecord{
-    margin: 0 auto;
-}
 
-.addRecord label{
-    width: 7rem;
-    text-align: right;
-}
-
+/*** DATABASE INFO ***/
 .id{
     color: #FFF;
     font-size: 0.1rem;
 }
 
 .title{
+    width: 85%;
     font-size: 1.8rem;
+    color: #3A3C54;
+    float: left;
 }
 
 .container .dvdRecord .image image{
@@ -451,6 +469,7 @@ input#tv.checkbox{
     border: 0.05rem solid #CCC;
     margin: 0 auto;
     padding-bottom: 0 auto 2rem;
+    clear: both;
 }
 
 .noImage{
@@ -461,6 +480,7 @@ input#tv.checkbox{
     color: #999;
     text-align: center;
     border: 0.05rem solid #CCC;
+    clear: both;
 }
 
 .noResult{
@@ -475,6 +495,17 @@ input#tv.checkbox{
 
 .director{
     margin-top: 2rem;
+}
+
+.tvTag{
+    width: 10%;
+    background-color: gold;
+    padding: 0.2rem;
+    border-radius: 0.25rem;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+    float: right;
 }
 
 .records{
@@ -502,6 +533,7 @@ input#tv.checkbox{
     text-align: right;
     color: red;
     display: block;
+    margin-right: 2.2rem;
 }
 
 .alert{
@@ -572,6 +604,8 @@ input#tv.checkbox{
     border-bottom: 0.01rem solid #cdcdcd;
 }
 
+
+/*** RESPONSIVENESS ***/
 @media screen and (max-width: 1415px){
     .submenu{
         min-height: 8rem;

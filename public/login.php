@@ -64,16 +64,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             
                             // Redirect user to welcome page
                             header("location: welcome.php");
-                        } else{
+                        }else{
                             // Display an error message if password is not valid
                             $password_err = "The password you entered was incorrect.";
                         }
                     }
-                } else{
+                }else{
                     // Display an error message if username doesn't exist
                     $username_err = "No account found with that username.";
                 }
-            } else{
+            }else{
                 echo "Oops! Something went wrong. Please try again later.";
             }
         }
@@ -84,16 +84,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     // Close connection
     unset($pdo_connection);
-}
-?>
+} ?>
  
 <!DOCTYPE html>
 <html lang="en">
+    
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
+    
 <body>
     <div class="container">
         
@@ -105,22 +106,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <hr>
 
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-
                 <div class="field <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-                    <p class="control icon is-left has-icons-left icon is-right has-icons-right">
+                    <p class="control has-icons-left has-icons-right">
                         <label>Username</label>
-                        <input type="text" name="username" placeholder="Username" class="" value="<?php echo $username; ?>">
+                        <input type="text" name="username" placeholder="Username" class="input" value="<?php echo $username; ?>">
                         <span class="help"><?php echo $username_err; ?></span>
                     </p>
                 </div>
 
                 <div class="field <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                    <p class="control icon is-left has-icons-left icon is-right has-icons-right">
+                    <p class="control has-icons-left">
                         <label>Password</label>
-                        <input type="password" name="password" placeholder="Password" class="">
+                        <input type="password" name="password" placeholder="Password" class="input">
                         <span class="help">
                             <?php echo $password_err; ?>
-                            <i class="fas fa-lock"></i>
                         </span>
                     </p>
                 </div>
@@ -134,7 +133,5 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </div>
         
     </div>
-</body>
-</html>
 
 <?php include "templates/footer.php"; ?>
