@@ -7,63 +7,73 @@ require "../config.php";
 require "common.php";
 
 // run when submit button is clicked
-if (isset($_POST['submit'])) {
-		
+if(isset($_POST['submit'])){
+        
     if(!empty($_FILES["image"]["name"])){
-        include "upload.php";
+        include "templates/upload.php";
+    }else{
+        $imgid = $_POST["image"];
     }
-    
-    try {
-        $connection = new PDO($dsn, $username, $password, $options);  
 
-    } catch(PDOException $error) {
+    try{
+        $connection = new PDO($dsn, $username, $password, $options);
+
+        // grab elements from form and set as variable
+        $film =[
+          "id"          => $_POST['id'],
+          "title"       => $_POST['title'],
+          "image"       => $imgid,
+          "director"    => $_POST['director'],
+          "starring"    => $_POST['starring'],
+          "genre"       => $_POST['genre'],
+          "tv"          => $_POST['tv'],
+          "season"      => $_POST['season'],
+          "releasedate" => $_POST['releasedate'],
+          "date"        => $_POST['date']
+        ];
+
+        // create SQL statement
+        $sql = "UPDATE `dvds` 
+                SET title = :title,
+                    image = :image,
+                    director = :director, 
+                    starring = :starring, 
+                    genre = :genre, 
+                    tv = :tv, 
+                    season = :season,
+                    releasedate = :releasedate,
+                    date = :date
+                WHERE id = :id";
+
+        //prepare sql statement
+        $statement = $connection->prepare($sql);
+
+        //execute sql statement
+        $statement->execute($film);
+
+        // show confirmation message on successful form submission
+        if (isset($_POST['submit']) && 
+            $statement && 
+            empty($input_err) && 
+            empty($upload_err)) { ?>
+
+            <p class='alert'>Record successfully updated.<br><a class="return" href="read.php">Return to collection.</a></p>
+
+        <?php }
+
+    }catch(PDOException $error){
         echo "<p>" . $sql . "<br>" . $error->getMessage() . "</p>";
     }
 
-    // grab elements from form and set as varaible
-    $film =[
-      "id"          => $_POST['id'],
-      "title"       => $_POST['title'],
-      //"image"       => $_POST['image'],
-      "image"       => $imgid,
-      "director"    => $_POST['director'],
-      "starring"    => $_POST['starring'],
-      "genre"       => $_POST['genre'],
-      "tv"          => $_POST['tv'],
-      "season"      => $_POST['season'],
-      "releasedate" => $_POST['releasedate'],
-      "date"        => $_POST['date']
-    ];
-
-    // create SQL statement
-    $sql = "UPDATE `dvds` 
-            SET title = :title,
-                image = :image,
-                director = :director, 
-                starring = :starring, 
-                genre = :genre, 
-                tv = :tv, 
-                season = :season,
-                releasedate = :releasedate,
-                date = :date
-            WHERE id = :id";
-
-    //prepare sql statement
-    $statement = $connection->prepare($sql);
-
-    //execute sql statement
-    $statement->execute($film);
-
 }
+    
 
+// Get data from database
 // simple if/else statement to check if the id is available
-if (isset($_GET['id'])) {
-//        // yes the id exists
-//        
-//        // quickly show the id on the page
-//        echo $_GET['id'];
-
-    try {
+if(isset($_GET['id'])){
+    
+    // yes the id exists
+    try{
         // standard db connection
         $connection = new PDO($dsn, $username, $password, $options);
 
@@ -85,17 +95,15 @@ if (isset($_GET['id'])) {
         // attach the sql statement to the new film variable so we can access it in the form
         $film = $statement->fetch(PDO::FETCH_ASSOC);
 
-    } catch(PDOExcpetion $error) {
+    }catch(PDOExcpetion $error){
         echo "<p>" . $sql . "<br>" . $error->getMessage() . "</p>";
     }
 
-} else {
-
+}else{
     // no id, show error
-    echo "No id - something went wrong";
+    echo "No id. Something went wrong";
     // exit;
-}
-?>
+} ?>
 
 <div class="container">
     
@@ -107,24 +115,26 @@ if (isset($_GET['id'])) {
 
         <?php 
         // show confirmation message on successful form submission
-        if (isset($_POST['submit']) && $statement) { ?>
+        if(isset($_POST['submit']) && $statement && $uploadOk == 1){ ?>
 
-            <p class='alert'>Record successfully updated.<br><a class="return" href="read.php">Return to collection.</a></p>
+            <p class='alert'>Record successfully updated.<br><a class="return" href="update.php">Return to collection.</a></p>
 
         <?php } ?>
-
+        
         <!--form to edit data for each DVD-->
         <form id="createRecord" method="post" enctype="multipart/form-data">
+            
+            <!-- hidden input for existing image -->
+            <input readonly type="hidden" name="image" id="image" value="<?php echo escape($film['image']); ?>" >
 
             <ul class="addRecord">
 
                 <!-- populate with existing data from database -->
-        
                 <!-- hide ID field so it can't be edited -->
                 <li class="label">
 <!--                    <label for="id">ID</label>-->
                     <input type="hidden" name="id" id="id" value="<?php echo escape($film['id']); ?>" >
-                </li>        
+                </li>
 
                 <li class="label">
                     <label for="title">Title<span class="req">*</span></label>
@@ -135,11 +145,11 @@ if (isset($_GET['id'])) {
                     <label for="image">Image</label>
                     <?php 
                     // if record had image attached when added, keep image attached
-                    if(escape($film['image']) !== NULL){ ?>
-                        <input type="image" name="image" id="image" value="<?php echo escape($film['image']); ?>">
-                    <?php }; ?>
+                    if($film['image'] !== NULL && $film["image"] !== ""){ 
+                        echo "<img class='thumb' src='uploads/" . $film["image"] . "' alt='" . $film['title'] ."'>";
+                    }; ?>
                     
-                    <input type="file" name="imageUpload" id="imageUpload">
+                    <input type="file" name="image" id="image">
                 </li>
 
                 <li class="label">
@@ -162,13 +172,13 @@ if (isset($_GET['id'])) {
                     <?php 
                     // if record was added as a tv series, keep checkbox checked
                     if(escape($film['tv']) == "Yes"){ ?>
-                        <input type="checkbox" name="tv" id="tv" value="Yes" checked>
+                        <input type="checkbox" name="tv" id="tv" value="Yes" checked onchange="check()">
                     <?php 
                     }else{ ?>
                         <input type="checkbox" name="tv" id="tv" value="Yes">
                     <?php }; ?>
                 </li>
-
+                
                 <li class="label">
                     <label for="season">Season</label>
                     <input type="number" name="season" id="season" value="<?php echo escape($film['season']); ?>">
@@ -181,11 +191,10 @@ if (isset($_GET['id'])) {
 
                 <p class="field control">
                     <input class="subBtn" type="submit" name="submit" value="Save">
-                    <a class="canBtn" href="update.php">Cancel</a>
+                    <a class="canBtn" href="update.php" onclick="return confirm('Are you sure you want to leave this page? Any unsaved changes will be lost.')";>Cancel</a>
                 </p>
 
             </ul>
-
         </form>
         
     </div>

@@ -63,14 +63,11 @@ if($result && $statement->rowCount() > 0){
                 <?php echo $row['title']; ?>
             </h4>
 
-            <p class="tv">
-                <?php
-                // if tv series is not NULL, display tv tag
-                if($row["tv"] !== NULL){
-                ?>
-                    <p class="tvTag">TV</p>
-                <?php } ?>
-            </p>
+            <?php
+            // if tv series is not NULL, display tv tag
+            if($row["tv"] !== NULL){ ?>
+                <p class="tv tvTag">TV</p>
+            <?php } ?>
 
             <p class="image">
                 <?php
@@ -157,7 +154,7 @@ if($result && $statement->rowCount() > 0){
 
             <!-- confirm user wants to delete -->
             <p class="right">
-                <a href='delete.php?id=<?php echo $row['id']; ?>' class="delBtn" onclick="return confirm('Are you sure you want to delete this record? This cannot be undone.');">Delete</a>
+                <a href='delete.php?id=<?php echo $row['id']; ?>' class="delBtn" onclick="return confirm('You are about to delete this record. This action cannot be undone. Are you sure you want to proceed?');">Delete</a>
             </p>
         </div>
 

@@ -101,7 +101,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <h2>Login</h2>
         
         <div class="content">
-            <p>Please fill in your credentials to login.</p>
+            <p>Please enter your credentials to login.</p>
             
             <hr>
 
@@ -127,6 +127,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <div class="field control">
                     <input type="submit" class="subBtn button" value="Login">
                 </div>
+            
+                <hr>
                 
                 <p class="other">Don't have an account? <a class="btn button" href="register.php">Sign up now</a></p>
             </form>

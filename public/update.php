@@ -24,19 +24,15 @@ if($result && $statement->rowCount() > 0){
             <?php echo $row["id"]; ?>
             </p>
 
-
             <h4 class="title">
             <?php echo $row['title']; ?>
             </h4>
 
-            <p class="tv">
-                <?php
-                // if tv series is not NULL, display tv tag
-                if($row["tv"] !== NULL){
-                ?>
-                    <p class="tvTag">TV</p>
-                <?php } ?>
-            </p>
+            <?php
+            // if tv series is not NULL, display tv tag
+            if($row["tv"] !== NULL){ ?>
+                <p class="tv tvTag">TV</p>
+            <?php } ?>
 
             <p class="image">
                 <?php

@@ -120,6 +120,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <hr>
 		
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                
                 <div class="field <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
                     <p class="control has-icons-left has-icons-right">
                         <label>
@@ -143,7 +144,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                 <div class="field <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
                     <p class="control has-icons-left">
-                        <label>Confirm Password</label>
+                        <label>Confirm password</label>
                         <input type="password" name="confirm_password" placeholder="Confirm password" class="form-control" value="<?php echo $confirm_password; ?>">
                         <span class="help"><?php echo $confirm_password_err; ?></span>
                     </p>
@@ -155,6 +156,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 </div>
                 
                 <p class="spacer"></p>
+            
+                <hr>
 
                 <p class="other">Already have an account? <a class="btn" href="login.php">Login here</a></p>
                 

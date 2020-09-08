@@ -1,116 +1,66 @@
+<?php include "templates/header.php"; ?>
+
 <?php
 // this code will only execute after the submit button is clicked
-if (isset($_POST['submit'])) {
+if(isset($_POST['submit'])){
 
     // include the config file
     require "../config.php";
+    include "templates/upload.php";
+    
+    // if upload is empty and there are no other errors detected, submit form
+	if(empty($input_err) && 
+       empty($upload_err)){
+    
+        // try/catch statement
+        try{
 
-    // upload image files to uploads folder
-    $target_dir = "uploads/"; // file storage - folder location
-    $target_file = $target_dir . basename($_FILES["image"]["name"]); // file path to upload
-    $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION)); // file extension type
+            // FIRST: Connect to the database
+            $connection = new PDO($dsn, $username, $password, $options);
 
-    // valid file extensions
-    $extensions_arr = array("jpg","jpeg","png","gif");
+            // SECOND: Get the contents of the form and store it in an array
+            $newDvd = array( 
+                "title"       => $_POST['title'],
+                "image"       => $imgid,
+                "director"    => $_POST['director'],
+                "starring"    => $_POST['starring'],
+                "genre"       => $_POST['genre'],
+                "tv"          => $_POST['tv'],
+                "season"      => $_POST['season'],
+                "releasedate" => $_POST['releasedate'],
+            );
 
-    // check file is an image
-    if(isset($_POST["submit"]) && (empty($_POST))){
-        $check = getimagesize($_FILES["image"]["tmp_name"]);
-        if($check !== false) {
-            $uploadOk = 1;
-        }else{
-            echo "File is not an image. Please select a different file.";
-            $uploadOk = 0;
+            // THIRD: Turn the array into a SQL statement
+            $sql = "INSERT INTO dvds (
+                title,
+                image,
+                director,
+                starring,
+                genre,
+                tv,
+                season,
+                releasedate
+            ) VALUES (
+                :title,
+                :image,
+                :director,
+                :starring,
+                :genre,
+                :tv,
+                :season,
+                :releasedate
+            )";
+
+            // FOURTH: Now write the SQL to the database
+            $statement = $connection->prepare($sql);
+            $statement->execute($newDvd);
+
+        }catch (PDOException $error){    
+            // if there is an error, tell us what it is
+            echo "<p>" . $sql . "<br>" . $error->getMessage() . "</p>";
         }
     }
-    
-    // only if user has selected a file to upload
-    if(!empty($_FILES["image"])){
-        
-        // if image with the same file name already exists in database and field is not empty
-        if(file_exists($target_file)){
-            echo "A file with this name already exists. Please specify another file name. ";
-            $uploadOk = 0;
-        }
-
-        // if the file size is over 500KB
-        if($_FILES["image"]["size"] > 500000){
-            echo "Your file is too large. Please choose a smaller file. ";
-            $uploadOk = 0;
-        }
-
-        // if image does not match the following formats and is not empty
-        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-        && $imageFileType != "gif"){
-            echo "Only JPG, JPEG, PNG and GIF files are accepted. Please choose another file type. ";
-            $uploadOk = 0;
-        }
-
-        // check if $uploadOk is set to 0 by an error and field is not empty
-        if($uploadOk == 0){
-            echo "Something went wrong. Your file was not uploaded. ";
-        // if everything is ok, try to upload file
-        }else{
-            if(move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)){
-        //    echo basename( $_FILES["image"]["name"]). " was successfully uploaded.";
-            }else{
-                echo "Something went wrong. There was an error uploading your file. ";
-            }
-        }
-        
-    } 
-    
-// try/catch statement
-try {
-    
-    // FIRST: Connect to the database
-    $connection = new PDO($dsn, $username, $password, $options);
-    
-    // SECOND: Get the contents of the form and store it in an array
-    $newDvd = array( 
-        "title"       => $_POST['title'],
-        "image"       => basename($_FILES["image"]["name"]),
-        "director"    => $_POST['director'],
-        "starring"    => $_POST['starring'],
-        "genre"       => $_POST['genre'],
-        "tv"          => $_POST['tv'],
-        "season"      => $_POST['season'],
-        "releasedate" => $_POST['releasedate'],
-    );
-    
-    // THIRD: Turn the array into a SQL statement
-    $sql = "INSERT INTO dvds (
-        title,
-        image,
-        director,
-        starring,
-        genre,
-        tv,
-        season,
-        releasedate
-    ) VALUES (
-        :title,
-        :image,
-        :director,
-        :starring,
-        :genre,
-        :tv,
-        :season,
-        :releasedate
-    )";
-    
-    // FOURTH: Now write the SQL to the database
-    $statement = $connection->prepare($sql);
-    $statement->execute($newDvd);
-
-    }catch (PDOException $error){    
-        // if there is an error, tell us what it is
-        echo "<p>" . $sql . "<br>" . $error->getMessage() . "</p>";
-    }
-} ?>
-
-<?php include "templates/header.php"; ?>
+}?>
 
 <div class="container">
         
@@ -122,8 +72,8 @@ try {
 
         <?php 
         // show confirmation message on successful form submission
-        if (isset($_POST['submit']) && $statement){
-            echo "<p class='alert'>DVD successfully added.</p>";
+        if(isset($_POST['submit']) && $statement && $uploadOk == 1){
+            echo "<p class='alert create'>DVD successfully added.</p>";
         } ?>
 
         <!--form to collect data for each DVD-->

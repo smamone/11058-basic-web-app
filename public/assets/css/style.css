@@ -375,8 +375,6 @@ label{
 .other{
     margin-top: 1rem;
     padding-top: 2rem;
-    border-top: 0.01rem solid #cdcdcd;
-    border-top: 0.01rem solid #cdcdcd;
 }
 
 .spacer{
@@ -406,7 +404,16 @@ input:focus{
 
 .req{
     font-weight: bold;
-    color: red;
+    color: #f14668;
+}
+
+.error{
+    color: #FFF;
+    background-color: #f14668;
+    text-align: center;
+    padding: 0.5rem;
+    border-top: 0.01rem solid #FFF;
+    border-bottom: 0.05rem solid #FFF;
 }
 
 #image{
@@ -421,6 +428,12 @@ input:focus{
 #imageUpload{
     margin-left: 7rem;
     border: none;
+}
+
+.thumb{
+    max-width: 5rem;
+    height: auto;
+    margin-left: 3rem;
 }
 
 .right{
@@ -506,6 +519,10 @@ input#tv.checkbox{
     font-size: 0.9rem;
     font-weight: bold;
     float: right;
+}
+
+#season{
+/*    display: none;*/
 }
 
 .records{
