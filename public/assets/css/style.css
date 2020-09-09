@@ -38,6 +38,10 @@ body{
     margin: 0 auto;
 }
 
+.spacing li{
+    padding: 0.5rem 0;
+}
+
 .container{
     width: 90%;
     min-height: 100%;
