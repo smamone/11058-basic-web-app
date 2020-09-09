@@ -32,8 +32,6 @@ if (isset($_GET["id"])){
 
         // Success message
         $success = "DVD successfully deleted.";
-        // update confirmation
-//        $success = echo "<p class='alert'>DVD successfully deleted.</p>";
 
     }catch(PDOException $error){
         // if there is an error, tell us what it is
@@ -44,8 +42,20 @@ if (isset($_GET["id"])){
 // This code runs on page load
 include "templates/search.php";
 include "templates/header.php";
-include "templates/submenu.php";
-            
+include "templates/submenu.php"; ?>
+
+<div class="sort">
+    <ul>
+        <p>Sort results by: </p>
+        <li><a href="delete.php?sort=title">TITLE</a></li>
+        <li><a href="delete.php?sort=director">DIRECTOR</a></li>
+        <li><a href="delete.php?sort=genre">GENRE</a></li>
+        <li><a href="delete.php?sort=tv">TV</a></li>
+        <li><a href="delete.php?sort=release">RELEASE DATE</a></li>
+    </ul>
+</div>
+
+<?php
 // if there are some results
 if($result && $statement->rowCount() > 0){
 

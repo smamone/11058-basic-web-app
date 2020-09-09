@@ -9,8 +9,20 @@ require "common.php";
 // This code runs on page load
 include "templates/search.php";
 include "templates/header.php";
-include "templates/submenu.php";
+include "templates/submenu.php"; ?>
 
+<div class="sort">
+    <ul>
+        <p>Sort results by: </p>
+        <li><a href="update.php?sort=title">TITLE</a></li>
+        <li><a href="update.php?sort=director">DIRECTOR</a></li>
+        <li><a href="update.php?sort=genre">GENRE</a></li>
+        <li><a href="update.php?sort=tv">TV</a></li>
+        <li><a href="update.php?sort=release">RELEASE DATE</a></li>
+    </ul>
+</div>
+
+<?php
 // if there are some results
 if($result && $statement->rowCount() > 0){
 

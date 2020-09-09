@@ -184,7 +184,7 @@ li a:hover{
 .top{
     width: 50%;
     font-size: 2.5rem;
-    color: #333;
+    color: #1f272d;
     border-radius: 2rem;
     padding: 3rem;
     text-align: right;
@@ -563,13 +563,47 @@ input#tv.checkbox{
     font-weight: bold;
 }
 
-.submenu{
-    margin: 1.5rem 1rem;
-    padding: 1rem;
-    background-color: #e1e6ea;
+.submenu, .sort{
+    width: 98%;
     height: 3.5rem;
-    font-size: 1.2rem;
     text-align: center;
+    color: #333;
+    padding: 1rem;
+}
+
+.submenu{
+    margin: 1rem auto 0;
+    background-color: #e1e6ea;
+    font-size: 1.2rem;
+}
+
+.sort{
+    margin: 0 auto 2rem;
+    border-bottom: 0.1rem solid #536878;
+}
+
+.sort ul{
+    margin: 0 auto;
+}
+
+.sort p, .sort li{
+    font-weight: bold;
+    color: #3A3C54;
+    margin: 0 1rem;
+    display: inline-block;
+}
+
+.sort li{
+    font-size: 0.9rem;
+}
+
+.sort li a{
+    color: #3A3C54;
+}
+
+.sort li a:hover{
+    color: #48c9b0;
+    text-decoration: underline;
 }
 
 .col{
@@ -714,7 +748,11 @@ input#tv.checkbox{
     
     .submenu{
         height: 6.5rem;
-        margin: 0 auto 1.5rem;
+        margin: 0 auto;
+    }
+    
+    .sort p, .sort li{
+        margin: 0 0.5rem;
     }
     
     .centre{
@@ -793,6 +831,15 @@ input#tv.checkbox{
         font-size: 3rem;
         float: none;
     }
+    
+    .sort{
+        height: 5rem;
+        margin: 0 auto 1.5rem;
+    }
+    
+    .sort p, .sort ul{
+        display: block;
+    }
 }
 
 @media screen and (max-width: 620px){
@@ -821,10 +868,21 @@ input#tv.checkbox{
         float: none;
     }
     
-    .submenu{
+    .submenu, .sort{
         height: auto;
         float: left;
+    }
+    
+    .submenu{
+        margin: 0 auto;
+    }
+    
+    .sort{
         margin: 0 auto 1.5rem;
+    }
+    
+    .sort p, .sort ul{
+        display: block;
     }
     
     .query{
