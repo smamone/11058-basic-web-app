@@ -92,6 +92,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    
+    <link rel="icon" href="assets/favicon.png" type="image/png">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
     
@@ -107,7 +109,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                 <div class="field <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-                    <p class="control has-icons-left has-icons-right">
+                    <p class="control">
                         <label>Username</label>
                         <input type="text" name="username" placeholder="Username" class="input" value="<?php echo $username; ?>">
                         <span class="help"><?php echo $username_err; ?></span>
@@ -115,7 +117,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 </div>
 
                 <div class="field <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                    <p class="control has-icons-left">
+                    <p class="control">
                         <label>Password</label>
                         <input type="password" name="password" placeholder="Password" class="input">
                         <span class="help">

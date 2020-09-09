@@ -107,7 +107,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <head>
     <meta charset="UTF-8">
     <title>Sign Up</title>
-	<link rel="stylesheet" href="assets/css/style.css">	
+    
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">	
 </head>
 
 <body>
@@ -122,20 +125,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                 
                 <div class="field <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-                    <p class="control has-icons-left has-icons-right">
-                        <label>
-                            <i class="fas fa-user"></i>
-                            Username
-                        </label>
-                        <input type="text" name="username" class="input is-focused is-success" placeholder="Username" value="<?php echo $username; ?>">
-                        <span class="help icon is-small is-left">
+                    <p class="control">
+                        <label>Username</label>
+                        <input type="text" name="username" class="input" placeholder="Username" value="<?php echo $username; ?>">
+                        <span class="help">
                             <?php echo $username_err; ?>
                         </span>
                     </p>
                 </div>    
 
                 <div class="field <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                    <p class="control has-icons-left">
+                    <p class="control">
                         <label>Password</label>
                         <input type="password" name="password" placeholder="Password" class="form-control" value="<?php echo $password; ?>">
                         <span class="help"><?php echo $password_err; ?></span>
@@ -143,7 +143,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 </div>
 
                 <div class="field <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
-                    <p class="control has-icons-left">
+                    <p class="control">
                         <label>Confirm password</label>
                         <input type="password" name="confirm_password" placeholder="Confirm password" class="form-control" value="<?php echo $confirm_password; ?>">
                         <span class="help"><?php echo $confirm_password_err; ?></span>

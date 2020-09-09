@@ -85,6 +85,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <head>
     <meta charset="UTF-8">
     <title>Reset Password</title>
+
+    <link rel="icon" href="assets/favicon.png" type="image/png">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
     
