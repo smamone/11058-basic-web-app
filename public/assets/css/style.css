@@ -33,6 +33,11 @@ body{
     float: right;
 }
 
+.wrap{
+    width: 50%;
+    margin: 0 auto;
+}
+
 .container{
     width: 90%;
     min-height: 100%;
@@ -85,12 +90,12 @@ h1{
     float: left;
 }
 
-h1 a:hover{
-    color: #FFF;
+h1 a, h1 a:visited{
+    color: #3A3C54;
 }
 
-h1 a:visited{
-    color: #3A3C54;
+h1 a:hover{
+    color: #FFF;
 }
 
 h2{
@@ -112,6 +117,10 @@ h2{
     margin-top: 2rem;
     margin-bottom: 0;
     border-bottom: 0.01rem solid #999;
+}
+
+h3{
+    text-align: center;
 }
 
 h4{
@@ -140,6 +149,10 @@ li a{
 
 li a:hover{    
     color: #FFF;
+}
+
+.indent{
+    margin-left: 1.5rem;
 }
 
 .header{
@@ -182,13 +195,19 @@ li a:hover{
 }
 
 .top{
-    width: 50%;
     font-size: 2.5rem;
     color: #1f272d;
     border-radius: 2rem;
     padding: 3rem;
-    text-align: right;
+    text-align: center;
     float: right;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    z-index: 99;
+    position: fixed;
+    bottom: 7rem;
+    right: 7rem;
 }
 
 
@@ -318,6 +337,11 @@ input .btn{
 }
 
 /* button hover states */
+.other .btn:hover{
+    background-color: #48c9b0;
+    color: #FFF;
+}
+
 .btn:hover{
     background-color: #FFF;
     color: #333;
@@ -521,8 +545,8 @@ input#tv.checkbox{
     float: right;
 }
 
-#season{
-/*    display: none;*/
+li>label[for="season"], #season{
+    display: none;
 }
 
 .records{

@@ -83,7 +83,7 @@ if(isset($_POST['submit'])){
 
                 <li class="label">
                     <label for="title">Title<span class="req">*</span></label> 
-                    <input type="text" name="title" id="title" required>
+                    <input type="text" name="title" id="title" placeholder="e.g. The X-Files" required>
                 </li>
 
                 <li class="label">
@@ -93,38 +93,38 @@ if(isset($_POST['submit'])){
 
                 <li class="label">
                     <label for="director">Director</label>
-                    <input type="text" name="director" id="director">
+                    <input type="text" name="director" id="director" placeholder="e.g. Quentin Tarantino">
                 </li>
 
                 <li class="label">
                     <label for="starring">Starring</label>
-                    <input type="text" name="starring" id="starring">
+                    <input type="text" name="starring" id="starring" placeholder="e.g. Meryl Streep">
                 </li>
 
                 <li class="label">
                     <label for="genre">Genre</label>
-                    <input type="text" name="genre" id="genre">
+                    <input type="text" name="genre" id="genre" placeholder="e.g Action">
                 </li>
 
                 <li class="label">
-                    <label for="tv" class="label checkbox">TV Series</label>
+                    <label for="tv" class="label checkbox">TV series</label>
                     <input class="checkbox" type="checkbox" name="tv" id="tv" value="Yes">
                 </li>
                 
                 <li class="label">
                     <label for="season">Season</label>
-                    <input type="number" name="season" id="season">
+                    <input type="number" name="season" id="season" placeholder="e.g. 1">
                 </li>
 
                 <li class="label">
-                    <label for="releasedate">Release Date</label>
-                    <input type="number" name="releasedate" id="releasedate">
+                    <label for="releasedate">Release date</label>
+                    <input type="number" name="releasedate" id="releasedate" placeholder="e.g. 2019">
                 </li>
 
                 <p class="field control">
                     <input class="addBtn" type="submit" name="submit" value="Add">
                     <input type="reset" class="resBtn" value="Reset">
-                    <a class="canBtn" href="welcome.php">Cancel</a>
+                    <a class="canBtn" href="welcome.php" onclick="return confirm('Are you sure you want to leave this page? Any unsaved changes will be lost.')">Cancel</a>
                 </p>
 
             </ul>

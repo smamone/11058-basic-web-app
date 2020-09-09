@@ -154,17 +154,17 @@ if(isset($_GET['id'])){
 
                 <li class="label">
                     <label for="director">Director</label>
-                    <input type="text" name="director" id="director" value="<?php echo escape($film['director']); ?>">
+                    <input type="text" name="director" id="director" placeholder="e.g. Quentin Tarantino" value="<?php echo escape($film['director']); ?>">
                 </li>
 
                 <li class="label">
                     <label for="starring">Starring</label>
-                    <input type="text" name="starring" id="starring" value="<?php echo escape($film['starring']); ?>">
+                    <input type="text" name="starring" id="starring" placeholder="e.g. Meryl Streep" value="<?php echo escape($film['starring']); ?>">
                 </li>
 
                 <li class="label">
                     <label for="genre">Genre</label>
-                    <input type="text" name="genre" id="genre" value="<?php echo escape($film['genre']); ?>">
+                    <input type="text" name="genre" id="genre" placeholder="e.g Comedy, Drama, Thriller" value="<?php echo escape($film['genre']); ?>">
                 </li>
 
                 <li class="label">

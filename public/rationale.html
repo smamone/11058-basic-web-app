@@ -1,0 +1,82 @@
+<!-- Rationale -->
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Rationale</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <div class="wrap">
+        
+        <h2>11058 Basic Web Application Rationale</h2>
+        <h3>Stefanie Mamone u3027318</h3>
+        
+        <hr>
+
+        <div>
+            <p><b>Site:</b> 
+                <a href="https://stefaniem.sgedu.site" target="_blank">https://stefaniem.sgedu.site</a>
+            </p>
+
+            <p><b>GitHub repository:</b> 
+                <a href="https://github.com/smamone/11058-basic-web-app" target="_blank">https://github.com/smamone/11058-basic-web-app</a>
+            </p>
+        </div>
+        
+        <hr>
+
+        <p>I created a database that would track the DVDs users own.</p>
+
+        <p>I incorporated the following frameworks into my project:</p>
+        <ul>
+            <li><b>Bulma</b><br>
+            Assisted with styling and consistency amongst fonts, responsiveness and spacing.</li>
+            <li><b>Font Awesome</b><br>
+            Enhanced the visual aspect of the site and improved communication with users through icons for buttons. </li>
+        </ul>
+
+        <p>As I progressed through the project, I began to understand the purpose of php code more and how to apply it for various purposes, which may be due to the fact that I noticed similarities between php and JavaScript/jQuery. </p>
+
+        <p>As a result, I was able to implement several additional features to enhance the user’s overall experience on the site.</p>
+
+        <ul>
+            <li><b>Scroll to top button</b><br>
+            Easy navigation to the top of the page when several records are displaying.</li>
+            <li><b>Record counter</b></li>
+                <li class="indent">When the user chooses “View all”, the total number of DVDs in the user’s collection based on the number of records within the database (not based on the last ID number, as records can be deleted) is displayed, giving the user a simple overview of the entire database.</li>
+                <li class="indent">When the user engages with the search field, the counter adjusts based on the number of DVDs currently displaying based on the search results. In future, I would also break down the total number by, for example, tv series and DVDs, and/or genre.</li>
+            <li><b>Sort options</b><br>
+            Allows sorting results by title, director, genre, tv and release date.</li>
+            <li><b>Confirmation messages/alerts </b><br>
+            To communicate to the user that their actions were successful or warn them prior to completing an irreversible action, such as:
+                <li class="indent">Registration confirmation</li>
+                <li class="indent">Password reset</li>
+                <li class="indent">Adding a new record</li>
+                <li class="indent">Updating an existing record</li>
+                <li class="indent">Confirm leaving the edit page</li>
+                <li class="indent">Confirm deletion of a record </li>
+            </li>
+            <li><b>Adding images</b><br>
+            To provide the user with a greater visual concept of the record they are viewing, particularly with records with similar/identical titles and easily determine their differences. I achieved this by following code from the W3Schools website and Riley, and adjusting and applying it for my own requirements. I further built on this by adding an alt tag to each record’s image dependant on the DVD type, and to cater for empty image upload fields to ensure an error message did not display for the incorrect file type. The image process was a challenge to implement, particularly replacing an existing image attached to a record as it was more complex, but with some assistance I succeeded.</li>
+        </ul>
+
+        <p>In allowing the user to specify whether a new DVD was a film or tv series, I incorporated a checkbox to check if it was a tv series. However, there were multiple issues in the checked value displaying as “Yes”, as well as ensuring the checkbox remained checked when the user entered the edit screen. I was able to implement if statements that read the value of each record to resolve both issues; one that displayed a tv tag on the read page if it was checked by the user in creation, and another that displayed a checked box when the user entered the edit screen.</p>
+
+        <p>To minimise confusion when displaying data, fields left blank in creation are hidden on the read page, such as the tv and season fields if the DVD is not part of a tv series. I achieved this by checking if the tv value is not NULL, and for all other fields checking if the field does not contain an empty string.</p>
+
+        <p>Although there were many challenges that arose during this project, the result was a database that met the minimum requirements and provided additional features to enhance the experience of the user.</p>
+
+        <p>In future, I would seek to implement a filtering function for results, additional layout views (i.e. list), colour coding by genres and types (i.e. film, tv series, etc.), and a method of changing the input text colour when a change has been made on the edit page.</p>
+    
+    </div>
+
+</body>
+    
+</html>

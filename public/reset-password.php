@@ -56,15 +56,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Attempt to execute the prepared statement
             if($stmt->execute()){
                 
-                // Show registration confirmation ?>
-                <p class="alert">
-                    New password saved successfully. You will automatically be redirected to the log in page.
-                    <br>
-                    If you are not redirected in 5 seconds, 
-                    <a href='login.php'>click here</a>.
-                </p>
+                // Show registration confirmation
+                echo "<p class='alert'>New password saved successfully. You will automatically be redirected to the log in page.</p>
+                <p>If you are not redirected in 5 seconds, <a href='login.php'>click here</a>.</p>";
 
-                <?php
                 // Password updated successfully. Destroy the session, and redirect to login page
                 session_destroy();
                     

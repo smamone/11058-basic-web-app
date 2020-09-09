@@ -3,7 +3,6 @@
             <a class="top" href="#top">
                 <i class="fas fa-chevron-circle-up"></i>
             </a>
-        </div>
 
     </div>
 </section>
